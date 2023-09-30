@@ -1,5 +1,5 @@
-import sql from './db.js';
-import { IWorkspace } from './IWorskpace.js';
+import sql from '../database/db.js';
+import { IWorkspace } from './interfaces/IWorskpace.js';
 
 async function getWorkspaces() {
     try {

@@ -1,6 +1,6 @@
 import Fastify from 'fastify';
-import workspacesMethods from './workspaces';
-import { IWorkspace } from './IWorskpace';
+import workspacesMethods from './workspaces/workspaces'
+import { IWorkspace } from './workspaces/interfaces/IWorskpace'
 
 const fastify = Fastify({
 	logger: true,
@@ -8,6 +8,7 @@ const fastify = Fastify({
 
 fastify.get('/api/getWorkspaces', async (req, res) => {
 	try {
+		
 		const workspaces = await workspacesMethods.getWorkspaces();
 
 		console.log(workspaces[0].name);
