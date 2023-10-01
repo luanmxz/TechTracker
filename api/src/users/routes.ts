@@ -49,6 +49,13 @@ export default async function routes(fastify: FastifyInstance, options: any) {
         if (error) res.status(500).send({ error: error.message });
 
         return data;
+    });
+
+    fastify.get('/api/users/signOut', async (req: any, res: any) => {
+
+        const { error } = await supabase.auth.signOut();
+
+        if (error) res.status(500).send({ error: error.message });
     })
 
 }
