@@ -1,76 +1,67 @@
-import sql from '../database/db'
-import { IWorkspace } from './interfaces/IWorskpace';
+import { FastifyInstance } from 'fastify';
+import supabase from '../database/db-supabase';
+import { timestamp } from 'rxjs';
 
-
-async function routes(fastify: any, options: any) {
+async function routes(fastify: FastifyInstance, options: any) {
 
     fastify.get('/api/getWorkspaces', async () => {
-        try {
-            const workspaces = await sql`
-                select name from tb01_workspaces
-            `;
 
-            return workspaces;
-        } catch (error) {
-            throw error;
-        }
+        const { data, error } = await supabase.from('tb01_workspaces')
+            .select('name');
+
+        if (error) throw error;
+
+        return data;
     });
 
     fastify.get('/api/getWorkspaceById/:workspaceId', async (req: any, res: any) => {
 
-        try {
-            const workspace = await sql`
-                select name from tb01_workspaces where id = ${req.params.workspaceId}
-            `
-            return workspace;
-        } catch (error: any) {
-            res.status(500).send({ error: error.message });
-        }
+        const { data, error } = await supabase.from('tb01_workspaces')
+            .select('name')
+            .eq('id', req.params.workspaceId)
 
+        if (error) res.status(500).send({ error: error.message });
+
+        return data;
     });
 
     fastify.get('/api/getWorkspacesByOwner/:ownerId', async (req: any, res: any) => {
-        try {
-            //TODO: Validate if is the owner(or admin) that is requesting the workspace
-            const workspaces = await sql`
-                select name from tb01_workspaces where owner = ${req.params.ownerId}
-            `
 
-            return workspaces;
+        //TODO: Validate if is the owner(or admin) that is requesting the workspace
+        const { data, error } = await supabase.from('tb01_workspaces')
+            .select('name')
+            .eq('owner', req.params.ownerId);
 
-        } catch (error: any) {
-            res.status(500).send({ error: error.message });
-        }
+        if (error) res.status(500).send({ error: error.message });
+
+        return data;
     });
 
     fastify.post('/api/createWorkspace', async (req: any, res: any) => {
-        try {
-            const workspace: IWorkspace = req.body as IWorkspace;
 
-            await sql`
-                insert into tb01_workspaces (name) values (${workspace.name});
-            `;
+        const { error } = await supabase.from('tb01_workspaces').insert({ name: req.body.name });
 
-            res.status(201).send({ message: 'Workspace criado com sucesso!' });
-        } catch (error: any) {
-            res.status(500).send({ error: error.message });
-        }
+        if (error) res.status(500).send({ error: error.message });
     });
 
     fastify.delete('/api/deleteWorkspace/:id', async (req: any, res: any) => {
-        try {
-            await sql`
-                delete from tb01_workspaces where id = ${req.params.id}
-            `
 
-            res.status(204).send();
-        } catch (error: any) {
-            res.status(500).send({ error: error.message });
-        }
+        const { error } = await supabase.from('tb01_workspaces')
+            .delete()
+            .eq('id', req.params.id);
+
+        if (error) res.status(500).send({ error: error.message });
     })
 
     //TODO: Update method
+    fastify.put('/api/updateWorkspace/:id', async (req: any, res: any) => {
 
+        const { error } = await supabase.from('tb01_workspaces')
+            .update({ name: req.body.name, updated_at: new Date().toLocaleString() })
+            .eq('id', req.params.id);
+
+        if (error) res.status(500).send({ error: error.message });
+    })
 }
 
 

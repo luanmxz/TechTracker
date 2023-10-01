@@ -1,4 +1,6 @@
-import 'dotenv/config'
+// CONNECTION VIA POSTGRES
+
+/*import 'dotenv/config'
 import postgres from 'postgres';
 
 const { DATABASE_URL, HOST_NAME, PORT, DATABASE_NAME, DB_USERNAME, DB_PASSWORD } = process.env;
@@ -18,3 +20,4 @@ const sql = postgres(connectionString, {
 });
 
 export default sql;
+*/
