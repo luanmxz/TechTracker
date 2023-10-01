@@ -1,8 +1,7 @@
 import { FastifyInstance } from 'fastify';
 import supabase from '../database/db-supabase';
-import { timestamp } from 'rxjs';
 
-async function routes(fastify: FastifyInstance, options: any) {
+export default async function routes(fastify: FastifyInstance, options: any) {
 
     fastify.get('/api/getWorkspaces', async () => {
 
@@ -63,6 +62,3 @@ async function routes(fastify: FastifyInstance, options: any) {
         if (error) res.status(500).send({ error: error.message });
     })
 }
-
-
-export default routes;
