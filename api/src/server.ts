@@ -1,6 +1,7 @@
 import Fastify from 'fastify';
 import workspacesRoutes from './workspaces/routes';
 import usersRoutes from './users/routes';
+import adminRoutes from './admin/routes';
 
 const fastify = Fastify({
 	logger: true,
@@ -8,6 +9,7 @@ const fastify = Fastify({
 
 fastify.register(workspacesRoutes);
 fastify.register(usersRoutes);
+fastify.register(adminRoutes);
 
 fastify.listen({ port: 3000 }, function (err, address) {
 	if (err) {
