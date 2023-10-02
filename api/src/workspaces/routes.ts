@@ -17,7 +17,7 @@ export default async function routes(fastify: FastifyInstance, options: any) {
 
         const { data, error } = await supabase.from('tb01_workspaces')
             .select('name')
-            .eq('id', req.params.workspaceId)
+            .eq('id', req.params.id)
 
         if (error) res.status(500).send({ error: error.message });
 
