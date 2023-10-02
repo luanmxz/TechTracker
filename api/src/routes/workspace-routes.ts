@@ -1,5 +1,5 @@
 import { FastifyInstance } from 'fastify';
-import supabase from '../database/db-supabase';
+import supabase from '../supabase/supabase';
 
 import { PrismaClient } from '@prisma/client';
 import { Workspace } from '../interfaces/Workspace';
