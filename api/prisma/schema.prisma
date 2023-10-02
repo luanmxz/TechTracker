@@ -64,6 +64,7 @@ model Card {
 
 model Comment {
   id String @id @default(uuid())
+  content String @db.VarChar()
   Card Card @relation(fields: [cardId], references: [id]) 
   cardId String
   User User @relation(fields: [userId], references: [id])
