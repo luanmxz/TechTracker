@@ -2,7 +2,7 @@ import { FastifyInstance } from 'fastify';
 import supabase from '../supabase/supabase';
 
 import { PrismaClient } from '@prisma/client';
-import { Workspace } from '../interfaces/Workspace';
+import { Workspace } from '../types/Workspace';
 
 const prisma = new PrismaClient();
 
