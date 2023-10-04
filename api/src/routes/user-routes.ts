@@ -9,4 +9,4 @@ export default async function routes(fastify: FastifyInstance, options: RouteOpt
 
     fastify.post('/api/users/signUp', userController.signUp);
 
-}
+};
