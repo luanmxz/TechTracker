@@ -1,13 +1,12 @@
-import { FastifyInstance } from 'fastify';
+import { FastifyInstance, RouteOptions } from 'fastify';
 import { UserController } from '../controllers/UserController';
 import { UserService } from '../services/UserService';
 
 const userService = new UserService();
 const userController = new UserController(userService);
 
-export default async function routes(fastify: FastifyInstance, options: any) {
+export default async function routes(fastify: FastifyInstance, options: RouteOptions) {
 
-    console.log('aquiii -> '  + userService);
     fastify.post('/api/users/signUp', userController.signUp);
 
 }

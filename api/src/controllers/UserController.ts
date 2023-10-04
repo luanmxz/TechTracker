@@ -2,9 +2,6 @@ import { FastifyReply, FastifyRequest } from "fastify";
 import { UserService } from "../services/UserService";
 import { CreateUser } from "../types/CreateUser";
 
-
-
-
 export class UserController {
     private userService: UserService;
 
@@ -12,16 +9,12 @@ export class UserController {
         this.userService = userService;
     }
 
-
-
     signUp = async (request: FastifyRequest, reply: FastifyReply) => {
-        console.log(this.userService);
-        const { email, password, name } = request.body as any;
 
-        console.log({ email, password, name });
+        const user = request.body as CreateUser;
 
         try {
-            await this.userService.create({ email, password, name });
+            await this.userService.create(user);
         } catch (error: any) {
             reply.status(500).send(error);
         }
