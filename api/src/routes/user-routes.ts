@@ -1,9 +1,9 @@
 import { FastifyInstance, RouteOptions } from 'fastify';
 import { UserController } from '../controllers/UserController';
-import { UserService } from '../services/UserService';
+import { container } from 'tsyringe';
 
-const userService = new UserService();
-const userController = new UserController(userService);
+
+const userController = container.resolve(UserController);
 
 export default async function routes(fastify: FastifyInstance, options: RouteOptions) {
 

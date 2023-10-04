@@ -1,7 +1,7 @@
-import { User } from "../types/User";
+import User from "../entities/User";
 
-export interface UserRepository {
-    create: (user: User) => Promise<void>;
+export default interface UserRepository {
+
     get: () => Promise<User[]>;
     getById: (id: string) => Promise<User>;
     delete: (id: string) => Promise<void>;

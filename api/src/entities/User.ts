@@ -1,6 +1,6 @@
 import { Role } from "../utils/enums/Role";
 
-export class User {
+export default class User {
 
     public readonly UUID: string;
     public email: string;
