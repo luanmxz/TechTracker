@@ -1,13 +1,13 @@
 import { FastifyInstance } from 'fastify';
-import supabase from '../external/supabase/supabase';
 import { UserController } from '../controllers/UserController';
+import { UserService } from '../services/UserService';
 
-
+const userService = new UserService();
+const userController = new UserController(userService);
 
 export default async function routes(fastify: FastifyInstance, options: any) {
 
-    const userController = new UserController(fastify);
-
-    fastify.get('/api/users/create', userController.createUser);
+    console.log('aquiii -> '  + userService);
+    fastify.post('/api/users/signUp', userController.signUp);
 
 }
