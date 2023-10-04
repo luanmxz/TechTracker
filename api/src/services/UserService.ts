@@ -1,24 +1,21 @@
-import { UserRepository } from "../repositories/UserRepository";
-import { User } from "../types/User";
+import supabase from "../external/supabase/supabase";
+import { CreateUser } from "../types/CreateUser";
 
-export class UserService implements UserRepository {
+export class UserService {
 
-    create(user: User): Promise<void> {
-        throw new Error("Method not implemented.");
-    }
-    get(): Promise<User> {
-        throw new Error("Method not implemented.");
-    }
-    getById(id: string): Promise<User> {
-        throw new Error("Method not implemented.");
-    }
-    update(user: User): Promise<User> {
-        throw new Error("Method not implemented.");
-    }
-    delete(id: string): Promise<void> {
-        throw new Error("Method not implemented.");
-    }
+    async create(user: CreateUser) {
 
+        const { error } = await supabase.auth.signUp({
+            email: user.email,
+            password: user.password,
+            options: {
+                data: {
+                    name: user.name
+                }
+            }
+        });
 
+        if (error) throw error;
+    }
 
 }
