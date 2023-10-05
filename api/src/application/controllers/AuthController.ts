@@ -3,6 +3,7 @@ import ICreateUser from "../../domain/types/ICreateUser";
 import { injectable, inject } from "tsyringe";
 import { AuthService } from "../services/AuthService";
 
+
 @injectable()
 export class AuthController {
     private authService: AuthService;
@@ -18,7 +19,7 @@ export class AuthController {
         try {
             await this.authService.signUp({ email, password, name });
         } catch (error: any) {
-            reply.status(500).send(error);
+            reply.status(500).send({ error: error.message });
         }
     };
 
