@@ -1,6 +1,6 @@
 import { FastifyInstance, RouteOptions } from 'fastify';
 import { container } from 'tsyringe';
-import  UserController  from '../controllers/UserController';
+import UserController from '../../application/controllers/UserController';
 
 const userController = container.resolve(UserController);
 

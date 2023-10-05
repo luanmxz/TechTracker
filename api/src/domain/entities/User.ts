@@ -1,4 +1,4 @@
-import { Role } from "../utils/enums/Role";
+import { Role } from "../../utils/enums/Role";
 
 export default class User {
 

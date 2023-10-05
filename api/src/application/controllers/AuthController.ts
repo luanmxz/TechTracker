@@ -1,5 +1,5 @@
 import { FastifyReply, FastifyRequest } from "fastify";
-import ICreateUser from "../types/ICreateUser";
+import ICreateUser from "../../domain/types/ICreateUser";
 import { injectable, inject } from "tsyringe";
 import { AuthService } from "../services/AuthService";
 

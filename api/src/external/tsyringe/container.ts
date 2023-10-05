@@ -1,10 +1,10 @@
 import "reflect-metadata";
 import { container } from 'tsyringe';
-import { AuthController } from '../../controllers/AuthController';
-import { AuthService } from '../../services/AuthService';
+import { AuthController } from '../../application/controllers/AuthController';
+import { AuthService } from '../../application/services/AuthService';
 import AuthRepositoryImpl from "../supabase/supabase-repositories/AuthRepositoryImpl";
-import UserController from "../../controllers/UserController";
-import UserService from "../../services/UserService";
+import UserController from "../../application/controllers/UserController";
+import UserService from "../../application/services/UserService";
 import UserRepositoryImpl from "../prisma/prisma-repositories/UserRepositoryImpl";
 import { PrismaClient } from "@prisma/client";
 
