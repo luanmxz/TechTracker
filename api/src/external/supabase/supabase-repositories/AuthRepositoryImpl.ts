@@ -5,6 +5,8 @@ import supabase from "../supabase";
 
 export default class AuthRepositoryImpl implements AuthRepository {
 
+    constructor() { }
+
     async signUp(newUser: ICreateUser) {
         const { error } = await supabase.auth.signUp({
             email: newUser.email,

@@ -1,12 +1,13 @@
 import { injectable, inject } from "tsyringe";
-import { PrismaUserRepository } from "../external/prisma/prisma-repositories/prisma-user-repository";
+import UserRepositoryImpl from "../external/prisma/prisma-repositories/UserRepositoryImpl";
 
 @injectable()
 export default class UserService {
-    private prismaUserRepository: PrismaUserRepository;
 
-    constructor(@inject('PrismaUserRepository') prismaUserRepository: PrismaUserRepository) {
-        this.prismaUserRepository = prismaUserRepository;
+    private userRepository: UserRepositoryImpl;
+
+    constructor(@inject(UserRepositoryImpl) userRepositoryImpl: UserRepositoryImpl) {
+        this.userRepository = userRepositoryImpl;
     }
 
 

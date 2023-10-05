@@ -1,15 +1,15 @@
 import { PrismaClient } from "@prisma/client";
 import UserRepository from "../../../repositories/UserRepository";
-import User from "../../../entities/User";
-import { injectable } from "tsyringe";
+
+import { injectable, inject } from "tsyringe";
+import { IUser } from "../../../types/IUser";
 
 @injectable()
-export class PrismaUserRepository implements UserRepository {
-    constructor(private readonly prisma: PrismaClient) { }
+export default class UserRepositoryImpl implements UserRepository {
 
+    constructor(@inject(PrismaClient) private readonly prisma: PrismaClient) { }
 
-
-    async get(): Promise<User[]> {
+    async get(): Promise<IUser[]> {
 
         return await this.prisma.user.findMany({
             select: {
@@ -19,7 +19,7 @@ export class PrismaUserRepository implements UserRepository {
         });
     };
 
-    async getById(id: string): Promise<User> {
+    async getById(id: string): Promise<IUser> {
 
         return await this.prisma.user.findUniqueOrThrow({
             select: { email: true, name: true },

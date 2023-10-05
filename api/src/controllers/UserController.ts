@@ -1,12 +1,14 @@
-import { injectable, inject, container } from "tsyringe";
+import { injectable, inject } from "tsyringe";
 import UserService from "../services/UserService";
 
 
 @injectable()
-export class UserController {
-    //private userService: UserService;
+export default class UserController {
+    private userService: UserService;
 
-    constructor() { }
+    constructor(@inject(UserService) userService: UserService) {
+        this.userService = userService;
+    }
 
     // TODO: user features
     do = async () => { }
