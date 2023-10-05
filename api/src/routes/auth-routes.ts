@@ -1,11 +1,12 @@
 import { FastifyInstance, RouteOptions } from 'fastify';
 import { container } from 'tsyringe';
-import { UserController } from '../controllers/UserController';
+import { AuthController } from '../controllers/AuthController';
 
-const userController = container.resolve(UserController);
+
+const authController = container.resolve(AuthController);
 
 export default async function routes(fastify: FastifyInstance, options: RouteOptions) {
 
-    fastify.post('/api/users/signUp', userController.do);
+    fastify.post('/api/auth/signUp', authController.signUp);
 
 };

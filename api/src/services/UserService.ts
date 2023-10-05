@@ -1,22 +1,13 @@
-import User from "../entities/User";
-import AuthRepositoryImpl from "../external/supabase/supabase-repositories/AuthRepositoryImpl";
-import ICreateUser from "../types/ICreateUser";
 import { injectable, inject } from "tsyringe";
+import { PrismaUserRepository } from "../external/prisma/prisma-repositories/prisma-user-repository";
 
 @injectable()
-export class UserService {
-    private authRepositoryImpl: AuthRepositoryImpl;
+export default class UserService {
+    private prismaUserRepository: PrismaUserRepository;
 
-    constructor(@inject('AuthRepositoryImpl') authRepositoryImpl: AuthRepositoryImpl) {
-        this.authRepositoryImpl = authRepositoryImpl;
+    constructor(@inject('PrismaUserRepository') prismaUserRepository: PrismaUserRepository) {
+        this.prismaUserRepository = prismaUserRepository;
     }
 
-    signUp = async (user: ICreateUser) => {
-
-        const newUser = User.createUser(user.email, user.name, user.password);
-
-        await this.authRepositoryImpl.signUp(newUser);
-
-    };
 
 }
