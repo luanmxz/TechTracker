@@ -32,6 +32,10 @@ export default class User {
         return new User("", email, name, password);
     }
 
+    public updateEmail(email: string): void {
+        this.email = email;
+    }
+
     private static validateEmail(email: string): void {
         if (!emailRegex.test(email)) throw new Error('Invalid email');
     }
