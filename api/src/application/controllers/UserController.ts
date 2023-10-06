@@ -9,14 +9,14 @@ export default class UserController {
     constructor(@inject(UserService) private userService: UserService) { }
 
     // TODO: user features
-    deleteAccount = async (request: FastifyRequest, reply: FastifyReply) => {
+    deleteAccount = async (request: FastifyRequest, response: FastifyReply) => {
         //getLoggedUser;
         const id = 'fakeId'; // loggedUser.id;
 
         try {
             this.userService.deleteAccount(id);
         } catch (error: any) {
-            reply.status(error.statusCode ?? 500).send(error.statusCode ? error.toJSON() : error);
+            response.status(error.statusCode ?? 500).send(error.statusCode ? error.toJSON() : error);
         };
     };
 

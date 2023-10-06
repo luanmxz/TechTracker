@@ -2,6 +2,7 @@ import User from "../../domain/entities/User";
 import AuthRepository from "../../domain/repositories/AuthRepository";
 import { ICreateUser } from "../../domain/interfaces/ICreateUser";
 import supabase from "../supabase/supabase";
+import { ILogingUser } from "../../domain/interfaces/ILogingUser";
 
 export default class AuthRepositoryImpl implements AuthRepository {
 
@@ -22,7 +23,11 @@ export default class AuthRepositoryImpl implements AuthRepository {
     };
 
 
-    async signIn(user: User) {
+    async signIn(user: ILogingUser) {
+        const { data, error } = await supabase.auth.signInWithPassword(user);
+
+        if (error) throw error;
+
         return user;
     };
 
