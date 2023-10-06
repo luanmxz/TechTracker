@@ -24,6 +24,8 @@ model User {
   cards Card[]
   comments Comment[]
 
+  @@map("users")
+
 }
 
 model Workspace {
@@ -36,6 +38,8 @@ model Workspace {
   userId String
   columns Column[]
   cards Card[]
+
+  @@map("workspaces")
 }
 
 model Column {
@@ -47,6 +51,8 @@ model Column {
   Workspace Workspace @relation(fields: [workspaceId], references: [id])
   workspaceId String
   cards Card[]
+
+  @@map("columns")
 }
 
 model Card {
@@ -60,6 +66,8 @@ model Card {
   Column Column @relation(fields: [columnId], references: [id])
   columnId String
   comments Comment[]
+
+  @@map("cards")
 }
 
 model Comment {
@@ -69,6 +77,8 @@ model Comment {
   cardId String
   User User @relation(fields: [userId], references: [id])
   userId String
+
+  @@map("comments")
 }
 
 enum Role {
