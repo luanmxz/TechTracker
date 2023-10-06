@@ -1,5 +1,5 @@
 import User from "../entities/User";
-import ICreateUser from "../types/ICreateUser";
+import { ICreateUser } from "../interfaces/ICreateUser";
 
 export default interface AuthRepository {
 

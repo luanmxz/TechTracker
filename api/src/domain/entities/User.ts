@@ -1,5 +1,6 @@
 import { Role } from "../../utils/enums/Role";
-import { emailRegex } from "../../utils/helpers/regexEmail";
+import validateEmail from "../../utils/validators/EmailValidator";
+import validateName from "../../utils/validators/NameValidator";
 
 export default class User {
 
@@ -27,29 +28,24 @@ export default class User {
     }
 
     static createUser(email: string = "", name: string = "", password: string = "") {
-        this.validateEmail(email);
-        this.validateName(name);
+        validateEmail(email);
+        validateName(name);
         return new User("", email, name, password);
     }
 
     public updateEmail(email: string): void {
-        User.validateEmail(email);
+        validateEmail(email);
         this.email = email;
     }
 
-    private static validateEmail(email: string): void {
-        if (!emailRegex.test(email)) throw new Error('Invalid email');
-    }
-
-    private static validateName(name: string): void {
-        if (name.length === 0) throw new Error('Você deve inserir um nome!');
-        if (name.length < 3) throw new Error('O nome deve possuir no mínimo 3 caracteres!');
+    public updateName(name: string): void {
+        validateName(name);
+        this.name = name;
     }
 
     public get getUUID(): string {
         return this.UUID;
     }
-
     public get getEmail(): string {
         return this.email;
     }
@@ -67,5 +63,8 @@ export default class User {
     }
     public get isBanned(): boolean {
         return this.banned;
+    }
+    public get getRoles(): Role[] {
+        return this.roles;
     }
 }

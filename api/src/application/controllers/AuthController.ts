@@ -1,5 +1,5 @@
 import { FastifyReply, FastifyRequest } from "fastify";
-import ICreateUser from "../../domain/types/ICreateUser";
+import { CreateUserType } from "../../domain/interfaces/CreateUserType";
 import { injectable, inject } from "tsyringe";
 import { AuthService } from "../services/AuthService";
 
@@ -14,7 +14,7 @@ export class AuthController {
 
     signUp = async (request: FastifyRequest, reply: FastifyReply) => {
 
-        const { email, password, name } = request.body as ICreateUser;
+        const { email, password, name } = request.body as CreateUserType;
 
         try {
             await this.authService.signUp({ email, password, name });

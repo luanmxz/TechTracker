@@ -14,7 +14,7 @@ test('should create a new user', () => {
 test('should throw an error if email is invalid', () => {
 
     const createUserWithInvalidEmail = () => {
-        User.createUser('testegmail.com', 'John Doe', 'password');
+        User.createUser('teste@gmail.com', 'John Doe', 'password');
     };
 
     expect(createUserWithInvalidEmail).toThrow('Invalid email');

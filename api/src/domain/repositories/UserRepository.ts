@@ -1,4 +1,4 @@
-import { IUser } from "../types/IUser";
+import { IUser } from "../interfaces/IUser";
 
 export default interface UserRepository {
 
