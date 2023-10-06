@@ -36,3 +36,18 @@ test('should throw an error if name is invalid', () => {
     expect(createUserWithInvalidName).toThrow('O nome deve possuir no mínimo 3 caracteres!');
 
 });
+
+
+test('should update a user email', () => {
+
+    const oldEmail = 'test@gmail.com';
+    const newEmail = 'newemail@gmail.com';
+
+    const user = User.createUser(oldEmail, 'test', 'test123');
+
+    expect(user.getEmail).toStrictEqual(oldEmail);
+
+    user.updateEmail(newEmail);
+
+    expect(user.getEmail).toStrictEqual(newEmail);
+});

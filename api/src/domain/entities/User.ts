@@ -33,6 +33,7 @@ export default class User {
     }
 
     public updateEmail(email: string): void {
+        User.validateEmail(email);
         this.email = email;
     }
 
