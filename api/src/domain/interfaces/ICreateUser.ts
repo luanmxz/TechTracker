@@ -1,5 +1,5 @@
 export interface ICreateUser {
-    email: string;
+    email:  string;
     name: string;
     password: string;
 }

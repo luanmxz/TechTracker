@@ -52,6 +52,9 @@ export default class User {
     public get getName(): string {
         return this.name;
     }
+    public get getPassword(): string {
+        return this.password;
+    }
     public get getCreatedAt(): Date {
         return this.createdAt;
     }
