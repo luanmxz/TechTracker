@@ -26,12 +26,18 @@ export default class User {
     }
 
     static createUser(email: string = "", name: string = "", password: string = "") {
-        this.validaEmail(email);
+        this.validateEmail(email);
+        this.validateName(name);
         return new User("", email, name, password);
     }
 
-    private static validaEmail(email: string) {
-        emailRegex.test(email) ? "" : new Error('Invalid email');
+    private static validateEmail(email: string): void {
+        if (!emailRegex.test(email)) throw new Error('Invalid email');
+    }
+
+    private static validateName(name: string): void {
+        if (name.length === 0) throw new Error('Você deve inserir um nome!');
+        if (name.length < 3) throw new Error('O nome deve possuir no mínimo 3 caracteres!');
     }
 
     public get getUUID(): string {
