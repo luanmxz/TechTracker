@@ -2,18 +2,15 @@ import { Role } from "../../utils/enums/Role";
 
 export default class User {
 
-    public readonly UUID: string;
-    public email: string;
-    public name: string;
-    public password: string;
-    public roles: Role[];
-    public createdAt: Date;
-    public updatedAt: Date;
-    public active: boolean;
-    public banned: boolean;
-
-
-
+    private readonly UUID: string;
+    private email: string;
+    private name: string;
+    private password: string;
+    private roles: Role[];
+    private createdAt: Date;
+    private updatedAt: Date;
+    private active: boolean;
+    private banned: boolean;
 
     constructor(UUID: string = "", email: string = "", name: string = "", password: string = "", roles: Role[] = [],
         createdAt: Date = new Date(), updatedAt: Date = new Date(), active: boolean = true, banned: boolean = false) {
@@ -29,12 +26,36 @@ export default class User {
     }
 
     static createUser(email: string = "", name: string = "", password: string = "") {
-
+        this.validaEmail(email);
         return new User("", email, name, password);
     }
 
-    private validaEmail() {
-        //TODO: validar email
+    private static validaEmail(email: string) {
+        emailRegex.test(email) ? "" : new Error('Invalid email');
     }
 
+    public get getUUID(): string {
+        return this.UUID;
+    }
+
+    public get getEmail(): string {
+        return this.email;
+    }
+    public get getName(): string {
+        return this.name;
+    }
+    public get getCreatedAt(): Date {
+        return this.createdAt;
+    }
+    public get getUpdatedAt(): Date {
+        return this.updatedAt;
+    }
+    public get isActive(): boolean {
+        return this.active;
+    }
+    public get isBanned(): boolean {
+        return this.banned;
+    }
 }
+
+const emailRegex: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
