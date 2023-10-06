@@ -1,7 +1,7 @@
-import User from "../../../domain/entities/User";
-import AuthRepository from "../../../domain/repositories/AuthRepository";
-import ICreateUser from "../../../domain/interfaces/ICreateUser";
-import supabase from "../supabase";
+import User from "../../domain/entities/User";
+import AuthRepository from "../../domain/repositories/AuthRepository";
+import { ICreateUser } from "../../domain/interfaces/ICreateUser";
+import supabase from "../supabase/supabase";
 
 export default class AuthRepositoryImpl implements AuthRepository {
 
