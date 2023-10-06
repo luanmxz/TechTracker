@@ -12,11 +12,13 @@ export class AuthService {
     }
 
     signUp = async (user: ICreateUser) => {
-
         const newUser = User.createUser(user.email, user.name, user.password);
 
         await this.authRepository.signUp({ email: newUser.getEmail, name: newUser.getName, password: newUser.getPassword });
-
     };
+
+    signOut = async () => {
+        await this.authRepository.signOut();
+    }
 
 }

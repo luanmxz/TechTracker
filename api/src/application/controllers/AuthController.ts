@@ -23,5 +23,14 @@ export class AuthController {
         }
     };
 
+    signOut = async (request: FastifyRequest, reply: FastifyReply) => {
+
+        try {
+            await this.authService.signOut();
+        } catch (error: any) {
+            reply.status(error.statusCode ?? 500).send(error.statusCode ? error.toJSON() : error);
+        }
+    }
+
 
 }

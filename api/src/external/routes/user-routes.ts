@@ -6,6 +6,8 @@ const userController = container.resolve(UserController);
 
 export default async function routes(fastify: FastifyInstance, options: RouteOptions) {
 
-    fastify.post('/api/users/signUp', userController.do);
+    //fastify.post('/api/users/signUp', userController.signUp);
+
+    fastify.post('/api/users/deleteAccount', userController.deleteAccount);
 
 };

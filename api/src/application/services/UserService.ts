@@ -1,14 +1,17 @@
 import { injectable, inject } from "tsyringe";
 import UserRepositoryImpl from "../../external/repositories-implementations/UserRepositoryImpl";
+import { AuthService } from "./AuthService";
 
 @injectable()
 export default class UserService {
 
-    private userRepository: UserRepositoryImpl;
+    constructor(@inject(UserRepositoryImpl) private userRepositoryImpl: UserRepositoryImpl, private authService: AuthService) { }
 
-    constructor(@inject(UserRepositoryImpl) userRepositoryImpl: UserRepositoryImpl) {
-        this.userRepository = userRepositoryImpl;
-    }
+    async deleteAccount(id: string) {
+        await this.authService.signOut().then(() => {
+            this.userRepositoryImpl.deleteAccount(id);
+        });
+    };
 
 
 }

@@ -8,7 +8,6 @@ export default class AuthRepositoryImpl implements AuthRepository {
     constructor() { }
 
     async signUp(newUser: ICreateUser) {
-
         const { error } = await supabase.auth.signUp({
             email: newUser.email,
             password: newUser.password,
@@ -24,13 +23,14 @@ export default class AuthRepositoryImpl implements AuthRepository {
 
 
     async signIn(user: User) {
-
         return user;
     };
 
 
     async signOut() {
+        const { error } = await supabase.auth.signOut();
 
+        if (error) throw error;
     };
 
 
