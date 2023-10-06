@@ -1,4 +1,5 @@
 import { Role } from "../../utils/enums/Role";
+import { emailRegex } from "../../utils/helpers/regexEmail";
 
 export default class User {
 
@@ -63,5 +64,3 @@ export default class User {
         return this.banned;
     }
 }
-
-const emailRegex: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
