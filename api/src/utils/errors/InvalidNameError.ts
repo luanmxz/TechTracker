@@ -11,4 +11,11 @@ export class InvalidNameError extends Error implements MindAppError {
         this.message = message;
     }
 
+    toJSON() {
+        return {
+            name: this.name,
+            message: this.message
+        }
+    }
+
 }

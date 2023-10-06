@@ -19,7 +19,7 @@ export class AuthController {
         try {
             await this.authService.signUp({ email, password, name });
         } catch (error: any) {
-            reply.status(error.statusCode ?? 500).send({ name: error.name, message: error.message });
+            reply.status(error.statusCode ?? 500).send(error.statusCode ? error.toJSON() : error);
         }
     };
 

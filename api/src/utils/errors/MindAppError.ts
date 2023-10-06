@@ -4,4 +4,11 @@ export interface MindAppError {
     message: string;
     statusCode: number;
 
+    toJSON(): MindAppErrorJson;
+
+}
+
+type MindAppErrorJson = {
+    name: string;
+    message: string;
 }
