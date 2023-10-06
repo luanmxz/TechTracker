@@ -1,6 +1,6 @@
 import User from "../../domain/entities/User";
-import AuthRepositoryImpl from "../../external/supabase/supabase-repositories/AuthRepositoryImpl";
-import { CreateUserType } from "../../domain/interfaces/CreateUserType";
+import AuthRepositoryImpl from "../../external/repositories-implementations/AuthRepositoryImpl";
+import { ICreateUser } from "../../domain/interfaces/ICreateUser";
 import { injectable, inject } from "tsyringe";
 
 @injectable()
@@ -11,7 +11,7 @@ export class AuthService {
         this.authRepository = authRepository;
     }
 
-    signUp = async (user: CreateUserType) => {
+    signUp = async (user: ICreateUser) => {
 
         const newUser = User.createUser(user.email, user.name, user.password);
 
