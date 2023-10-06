@@ -33,7 +33,7 @@ export default class AuthRepositoryImpl implements AuthRepository {
 
 
     async signOut() {
-        const { error } = await supabase.auth.signOut();
+        const { error } = await supabase.auth.signOut({ scope: 'global' });
 
         if (error) throw error;
     };
