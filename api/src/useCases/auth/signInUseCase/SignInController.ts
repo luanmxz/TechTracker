@@ -1,8 +1,9 @@
+import { FastifyReply, FastifyRequest } from "fastify";
 import { ISignInDTO } from "./ISignInDTO";
 import { SignInUseCase } from "./SignInUseCase";
 
 export class SignInController {
-    constructor(private signInUseCase: SignInUseCase) {}
+    constructor(private signInUseCase: SignInUseCase) { }
 
 
     signIn = async (request: FastifyRequest, response: FastifyReply) => {

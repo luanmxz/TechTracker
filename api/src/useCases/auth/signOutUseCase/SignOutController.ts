@@ -1,7 +1,8 @@
+import { FastifyReply, FastifyRequest } from "fastify";
 import { SignOutUseCase } from "./SignOutUseCase";
 
 export class SignOutController {
-    constructor(private signOutUseCase: SignOutUseCase) {}
+    constructor(private signOutUseCase: SignOutUseCase) { }
 
 
     signOut = async (request: FastifyRequest, response: FastifyReply) => {

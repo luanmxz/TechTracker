@@ -1,22 +1,22 @@
 import { InvalidPassword } from "../errors/InvalidPassword";
-import { atLeastEightChar, atLeastOneEspecialChar, atLeastOneMinnorCase, atLeastOneNumber, atLeastOneUpperCase, validateAllFactors } from "../helpers/regexPassword";
+import { atLeastEightChar, atLeastOneEspecialChar, atLeastOneMinnorCase, atLeastOneNumber, atLeastOneUpperCase, validateAllFactors } from '../helpers/RegexPassword';
 
-export function validatePassword(password: string){
+export function validatePassword(password: string) {
 
-    switch(false){
-        case(atLeastOneMinnorCase.test(password)):
+    switch (false) {
+        case (atLeastOneMinnorCase.test(password)):
             throw new InvalidPassword('Sua senha deve possuir no mínimo uma letra minúscula.');
-        case(atLeastOneUpperCase.test(password)):
+        case (atLeastOneUpperCase.test(password)):
             throw new InvalidPassword('Sua senha deve possuir no mínimo uma letra maiúscula.');
-        case(atLeastOneNumber.test(password)):
+        case (atLeastOneNumber.test(password)):
             throw new InvalidPassword('Sua senha deve possuir no mínimo um número.');
-        case(atLeastOneEspecialChar.test(password)):
+        case (atLeastOneEspecialChar.test(password)):
             throw new InvalidPassword('Sua senha deve possuir no mínimo um caracter especial.');
-        case(atLeastEightChar.test(password)):
+        case (atLeastEightChar.test(password)):
             throw new InvalidPassword('Sua senha deve possuir no mínimo 8 caracteres.');
-        case(validateAllFactors.test(password)):
+        case (validateAllFactors.test(password)):
             throw new InvalidPassword('Senha inválida!');
         default:
-            break;   
+            break;
     }
 }

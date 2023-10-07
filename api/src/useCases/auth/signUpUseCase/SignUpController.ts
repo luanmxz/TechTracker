@@ -1,8 +1,9 @@
+import { FastifyReply, FastifyRequest } from "fastify";
 import { ISignUpDTO } from "./ISignUpDTO";
 import { SignUpUseCase } from "./SignUpUseCase";
 
 export class SignUpController {
-    constructor(private  signUpUseCase: SignUpUseCase) {}
+    constructor(private signUpUseCase: SignUpUseCase) { }
 
 
     execute = async (request: FastifyRequest, response: FastifyReply) => {

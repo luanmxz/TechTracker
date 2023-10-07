@@ -1,8 +1,9 @@
+import { FastifyReply, FastifyRequest } from "fastify";
 import { DeleteAccountUseCase } from "./DeleteAccountUseCase";
 
 export class DeleteAccountController {
 
-    constructor(private deleteAccountUseCase: DeleteAccountUseCase) {}
+    constructor(private deleteAccountUseCase: DeleteAccountUseCase) { }
 
     execute = async (request: FastifyRequest, response: FastifyReply) => {
         //getLoggedUser;
