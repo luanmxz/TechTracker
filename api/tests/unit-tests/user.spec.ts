@@ -1,4 +1,4 @@
-import User from '../../src/domain/entities/User';
+import User from '../../src/entities/User';
 
 test('should create a new user', () => {
 

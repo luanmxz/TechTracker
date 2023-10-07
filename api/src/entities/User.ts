@@ -1,6 +1,8 @@
-import { Role } from "../../utils/enums/Role";
-import validateEmail from "../../utils/validators/EmailValidator";
-import validateName from "../../utils/validators/NameValidator";
+import { Role } from "../utils/enums/Role";
+import { canUpdateUserValidate } from "../utils/validators/CanUpdateUserValidator";
+import validateEmail from "../utils/validators/EmailValidator";
+import validateName from "../utils/validators/NameValidator";
+import { validatePassword } from "../utils/validators/PasswordValidator";
 
 export default class User {
 
@@ -27,20 +29,34 @@ export default class User {
         this.banned = banned;
     }
 
-    static createUser(email: string = "", name: string = "", password: string = "") {
+    static createUser(email: string, name: string, password: string): User {
         validateEmail(email);
         validateName(name);
+        validatePassword(password);
         return new User("", email, name, password);
     }
 
     public updateEmail(email: string): void {
+        canUpdateUserValidate(this.isBanned, this.isActive);
         validateEmail(email);
         this.email = email;
     }
 
     public updateName(name: string): void {
+        canUpdateUserValidate(this.isBanned, this.isActive);
         validateName(name);
         this.name = name;
+    }
+
+    public updatePassword(password: string): void {
+        canUpdateUserValidate(this.isBanned, this.isActive);
+        validatePassword(password);
+        this.password = password;
+    }
+
+    public addRole(role: Role) {
+        canUpdateUserValidate(this.isBanned, this.isActive);
+        this.roles.push(role);
     }
 
     public get getUUID(): string {

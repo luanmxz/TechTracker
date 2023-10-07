@@ -1,15 +1,12 @@
 import { PrismaClient } from "@prisma/client";
-import UserRepository from "../../domain/repositories/UserRepository";
-import { injectable, inject } from "tsyringe";
-import { IUser } from "../../domain/interfaces/IUser";
+import UserRepository from "../../useCases/users/UserRepository";
+import { IUserDTO } from "../../useCases/users/IUserDTO";
 
-@injectable()
 export default class UserRepositoryImpl implements UserRepository {
+    
+    constructor(private readonly prisma: PrismaClient) { }
 
-
-    constructor(@inject(PrismaClient) private readonly prisma: PrismaClient) { }
-
-    async get(): Promise<IUser[]> {
+    async get(): Promise<IUserDTO[]> {
         return await this.prisma.user.findMany({
             select: {
                 email: true,
@@ -18,7 +15,7 @@ export default class UserRepositoryImpl implements UserRepository {
         });
     };
 
-    async getById(id: string): Promise<IUser> {
+    async getById(id: string): Promise<IUserDTO> {
         return await this.prisma.user.findUniqueOrThrow({
             select: { email: true, name: true },
             where: { id }

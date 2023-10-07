@@ -1,14 +1,13 @@
-import User from "../../domain/entities/User";
-import AuthRepository from "../../domain/repositories/AuthRepository";
-import { ICreateUser } from "../../domain/interfaces/ICreateUser";
+import AuthRepository from "../../useCases/auth/AuthRepository";
 import supabase from "../supabase/supabase";
-import { ILogingUser } from "../../domain/interfaces/ILogingUser";
+import { ISignInDTO } from "../../useCases/auth/signInUseCase/ISignInDTO";
+import { ISignUpDTO } from "../../useCases/auth/signUpUseCase/ISignUpDTO";
 
 export default class AuthRepositoryImpl implements AuthRepository {
 
     constructor() { }
 
-    async signUp(newUser: ICreateUser) {
+    async signUp(newUser: ISignUpDTO) {
         const { error } = await supabase.auth.signUp({
             email: newUser.email,
             password: newUser.password,
@@ -23,7 +22,7 @@ export default class AuthRepositoryImpl implements AuthRepository {
     };
 
 
-    async signIn(user: ILogingUser) {
+    async signIn(user: ISignInDTO) {
         const { data, error } = await supabase.auth.signInWithPassword(user);
 
         if (error) throw error;

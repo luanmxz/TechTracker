@@ -1,5 +1,3 @@
-import "reflect-metadata";
-import "./external/tsyringe/container";
 import 'dotenv/config'
 import Fastify from 'fastify';
 import userRoutes from './external/routes/user-routes';
