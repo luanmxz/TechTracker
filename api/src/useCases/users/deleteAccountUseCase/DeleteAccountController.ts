@@ -5,7 +5,7 @@ export class DeleteAccountController {
 
     constructor(private deleteAccountUseCase: DeleteAccountUseCase) { }
 
-    execute = async (request: FastifyRequest, response: FastifyReply) => {
+    handler = async (request: FastifyRequest, response: FastifyReply) => {
         //getLoggedUser;
         const id = 'fakeId'; // loggedUser.id;
 

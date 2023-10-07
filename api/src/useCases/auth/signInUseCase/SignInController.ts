@@ -1,19 +1,20 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 import { ISignInDTO } from "./ISignInDTO";
 import { SignInUseCase } from "./SignInUseCase";
+import { handleErrorResponse } from "../../../utils/helpers/HandleErrorResponse";
 
 export class SignInController {
     constructor(private signInUseCase: SignInUseCase) { }
 
 
-    signIn = async (request: FastifyRequest, response: FastifyReply) => {
+    handler = async (request: FastifyRequest, response: FastifyReply) => {
 
         const logingUser = request.body as ISignInDTO;
 
         try {
             await this.signInUseCase.execute(logingUser);
         } catch (error: any) {
-            response.status(error.statusCode ?? 500).send(error.statusCode ? error.toJSON() : error);
+            handleErrorResponse(response, error);
         }
     }
 }

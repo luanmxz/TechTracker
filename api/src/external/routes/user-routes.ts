@@ -5,6 +5,6 @@ const deleteAccountController = new DeleteAccountDependencyFactory().getInstance
 
 export default async function routes(fastify: FastifyInstance, options: RouteOptions) {
     
-    fastify.post('/api/users/deleteAccount', deleteAccountController.execute);
+    fastify.post('/api/users/deleteAccount', deleteAccountController.handler);
 
 };
