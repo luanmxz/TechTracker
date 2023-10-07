@@ -1,17 +1,17 @@
-export class SignUpController {
+export class SignInController {
     constructor(@inject(AuthService) authService: AuthService) {
         this.authService = authService;
     }
 
 
-    signUp = async (request: FastifyRequest, response: FastifyReply) => {
+    signIn = async (request: FastifyRequest, response: FastifyReply) => {
 
-        const { email, password, name } = request.body as ISignUpDTO;
+        const logingUser = request.body as ILogingUser;
 
         try {
-            await this.authService.signUp({ email, password, name });
+            await this.authService.signIn(logingUser);
         } catch (error: any) {
             response.status(error.statusCode ?? 500).send(error.statusCode ? error.toJSON() : error);
         }
-    };
+    }
 }

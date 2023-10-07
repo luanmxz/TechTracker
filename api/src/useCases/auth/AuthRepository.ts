@@ -1,6 +1,6 @@
 import User from "../../entities/User";
 import { ICreateUser } from "./ICreateUserDTO";
-import { ILogingUser } from "./ILogingUserDTO";
+import { ILogingUser } from "./signInUseCase/ISignInDTO";
 
 export default interface AuthRepository {
 
