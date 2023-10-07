@@ -1,11 +1,10 @@
-import User from "../../entities/User";
-import { ICreateUser } from "./ICreateUserDTO";
-import { ILogingUser } from "./signInUseCase/ISignInDTO";
+import { ISignInDTO } from "./signInUseCase/ISignInDTO";
+import { ISignUpDTO } from "./signUpUseCase/ISignUpDTO";
 
 export default interface AuthRepository {
 
-    signUp: (user: ICreateUser) => Promise<void>;
-    signIn: (user: ILogingUser) => Promise<ILogingUser>;
+    signUp: (user: ISignUpDTO) => Promise<void>;
+    signIn: (user: ISignInDTO) => Promise<ISignInDTO>;
     signOut: () => Promise<void>;
 
 }

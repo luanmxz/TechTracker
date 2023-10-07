@@ -1,6 +1,10 @@
-export class SignInUseCase {
+import AuthRepositoryImpl from "../../../external/repository-implementations/AuthRepositoryImpl";
+import { ISignInDTO } from "./ISignInDTO";
 
-    signIn = async (logingUser: ILogingUser) => {
+export class SignInUseCase {
+    constructor(private authRepository: AuthRepositoryImpl) {}
+
+    execute = async (logingUser: ISignInDTO) => {
         await this.authRepository.signIn(logingUser);
     }
 }

@@ -1,13 +1,10 @@
 import { FastifyInstance, RouteOptions } from 'fastify';
-import { container } from 'tsyringe';
-import UserController from '../../application/controllers/UserController';
+import { DeleteAccountDependencyFactory } from '../../useCases/users/deleteAccountUseCase/DeleteAccountDependencyFactory';
 
-const userController = container.resolve(UserController);
+const deleteAccountController = new DeleteAccountDependencyFactory().getInstance();
 
 export default async function routes(fastify: FastifyInstance, options: RouteOptions) {
-
-    //fastify.post('/api/users/signUp', userController.signUp);
-
-    fastify.post('/api/users/deleteAccount', userController.deleteAccount);
+    
+    fastify.post('/api/users/deleteAccount', deleteAccountController.execute);
 
 };

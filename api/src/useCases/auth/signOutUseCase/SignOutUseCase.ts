@@ -1,6 +1,9 @@
-export class SignOutUseCase {
+import AuthRepositoryImpl from "../../../external/repository-implementations/AuthRepositoryImpl";
 
-    signOut = async () => {
+export class SignOutUseCase {
+    constructor(private authRepository: AuthRepositoryImpl) {}
+
+    execute = async () => {
         await this.authRepository.signOut();
     }
 }
