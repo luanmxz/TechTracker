@@ -1,6 +1,6 @@
-import { Role } from "../../utils/enums/Role";
-import validateEmail from "../../utils/validators/EmailValidator";
-import validateName from "../../utils/validators/NameValidator";
+import { Role } from "../utils/enums/Role";
+import validateEmail from "../utils/validators/EmailValidator";
+import validateName from "../utils/validators/NameValidator";
 
 export default class User {
 

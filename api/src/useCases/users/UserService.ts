@@ -1,6 +1,6 @@
 import { injectable, inject } from "tsyringe";
-import UserRepositoryImpl from "../../external/repositories-implementations/UserRepositoryImpl";
-import { AuthService } from "./AuthService";
+import UserRepositoryImpl from "../../external/repository-implementations/UserRepositoryImpl";
+import { AuthService } from "../auth/AuthService";
 
 @injectable()
 export default class UserService {

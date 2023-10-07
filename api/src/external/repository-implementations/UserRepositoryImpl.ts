@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
-import UserRepository from "../../domain/repositories/UserRepository";
+import UserRepository from "../../useCases/users/UserRepository";
 import { injectable, inject } from "tsyringe";
-import { IUser } from "../../domain/interfaces/IUser";
+import { IUser } from "../../useCases/users/IUserDTO";
 
 @injectable()
 export default class UserRepositoryImpl implements UserRepository {

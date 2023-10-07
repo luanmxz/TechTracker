@@ -1,6 +1,6 @@
 import { FastifyInstance, RouteOptions } from 'fastify';
 import { container } from 'tsyringe';
-import { AuthController } from '../../application/controllers/AuthController';
+import { AuthController } from '../../useCases/auth/AuthController';
 
 const authController = container.resolve(AuthController);
 

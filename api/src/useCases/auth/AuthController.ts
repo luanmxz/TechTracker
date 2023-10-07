@@ -1,8 +1,8 @@
 import { FastifyReply, FastifyRequest } from "fastify";
-import { ICreateUser } from "../../domain/interfaces/ICreateUser";
+import { ICreateUser } from "./ICreateUserDTO";
 import { injectable, inject } from "tsyringe";
-import { AuthService } from "../services/AuthService";
-import { ILogingUser } from "../../domain/interfaces/ILogingUser";
+import { AuthService } from "./AuthService";
+import { ILogingUser } from "./ILogingUserDTO";
 
 
 @injectable()
@@ -12,17 +12,6 @@ export class AuthController {
     constructor(@inject(AuthService) authService: AuthService) {
         this.authService = authService;
     }
-
-    signUp = async (request: FastifyRequest, response: FastifyReply) => {
-
-        const { email, password, name } = request.body as ICreateUser;
-
-        try {
-            await this.authService.signUp({ email, password, name });
-        } catch (error: any) {
-            response.status(error.statusCode ?? 500).send(error.statusCode ? error.toJSON() : error);
-        }
-    };
 
     signOut = async (request: FastifyRequest, response: FastifyReply) => {
 

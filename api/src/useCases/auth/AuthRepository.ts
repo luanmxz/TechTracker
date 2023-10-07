@@ -1,6 +1,6 @@
-import User from "../entities/User";
-import { ICreateUser } from "../interfaces/ICreateUser";
-import { ILogingUser } from "../interfaces/ILogingUser";
+import User from "../../entities/User";
+import { ICreateUser } from "./ICreateUserDTO";
+import { ILogingUser } from "./ILogingUserDTO";
 
 export default interface AuthRepository {
 
