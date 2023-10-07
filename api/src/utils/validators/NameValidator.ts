@@ -1,20 +1,9 @@
 import { InvalidNameError } from "../errors/InvalidNameError";
-import { atLeastThreeChar, exceedNameMaxLenght, nameCannotContainEspecialChar, nameCannotContainNumber, validateAllFactors } from "../helpers/regexName";
+import { atLeastThreeChar, exceedNameMaxLenght, nameCannotContainEspecialChar } from "../helpers/regexName";
 
 export default function validateName(name: string): void {
 
-    switch(false){
-        case(atLeastThreeChar.test(name)):
-            throw new InvalidNameError('O nome deve possuir no mínimo 3 caracteres.');
-        case(exceedNameMaxLenght.test(name)):
-            throw new InvalidNameError('Nome muito grande. O nome deve possuir no máximo 40 caracteres.');
-        case(nameCannotContainEspecialChar.test(name)):
-            throw new InvalidNameError('O nome não pode possuir caracteres especiais.');
-        case(nameCannotContainNumber.test(name)):
-            throw new InvalidNameError('O nome não pode conter números.');
-        case(validateAllFactors.test(name)):
-            throw new InvalidNameError('Nome inválido.');
-        default:
-            break;
-    }
+    if (!atLeastThreeChar.test(name)) throw new InvalidNameError('The name must have at least 3 characters.');
+    if (exceedNameMaxLenght.test(name)) throw new InvalidNameError('Name too long. The name must have a maximum of 40 characters.');
+    if (!nameCannotContainEspecialChar.test(name)) throw new InvalidNameError('The name cannot contain special characters or numbers.');
 }
