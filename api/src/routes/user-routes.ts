@@ -1,6 +1,7 @@
 import { FastifyInstance, RouteOptions } from 'fastify';
 import { FastifyHttpAdapter } from '../external/fastify/FastifyHttpAdapter';
 import { DeleteAccountContainer } from '../useCases/users/deleteAccountUseCase/DeleteAccountContainer';
+import { GetAllUsersContainer } from '../useCases/users/getAllUsersUseCase/GetAllUsersContainer';
 
 export default async function routes(fastify: FastifyInstance, options: RouteOptions) {
 
@@ -17,7 +18,8 @@ export default async function routes(fastify: FastifyInstance, options: RouteOpt
 
     fastify.get('/users', async (request, response) => {
         const fastifyHttpAdapter = new FastifyHttpAdapter(request, response);
-        //TODO: implement get all users method
+        const getAllUsersController = GetAllUsersContainer.getInstance().getControllerInstance();
+        await getAllUsersController.handle(fastifyHttpAdapter);
     });
 
     fastify.get('/users/:uuid', async (request, response) => {
