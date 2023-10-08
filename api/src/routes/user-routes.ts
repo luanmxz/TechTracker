@@ -2,6 +2,7 @@ import { FastifyInstance, RouteOptions } from 'fastify';
 import { FastifyHttpAdapter } from '../external/fastify/FastifyHttpAdapter';
 import { DeleteAccountContainer } from '../useCases/users/deleteAccountUseCase/DeleteAccountContainer';
 import { GetAllUsersContainer } from '../useCases/users/getAllUsersUseCase/GetAllUsersContainer';
+import { IUserDTO } from '../useCases/users/IUserDTO';
 
 export default async function routes(fastify: FastifyInstance, options: RouteOptions) {
 

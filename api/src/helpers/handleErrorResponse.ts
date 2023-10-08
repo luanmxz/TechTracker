@@ -1,8 +1,11 @@
 import { IHttpContextAdapter } from "../interfaces/IHttpContextAdapter";
 
-export function handleErrorResponse(httpContextAdapter: IHttpContextAdapter, error: any) {
+export class ErrorResponseHandler {
+    constructor(private httpContextAdapter: IHttpContextAdapter, private error: any) { }
 
-    const statusCode = error.statusCode || 500;
+    handle(): void {
+        const statusCode = this.error.statusCode || 500;
+        this.httpContextAdapter.status(statusCode).send(this.error.statusCode ? this.error.toJSON() : this.error);
+    };
 
-    httpContextAdapter.status(statusCode).send(error.statusCode ? error.toJSON() : error);
 }

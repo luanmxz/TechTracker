@@ -1,5 +1,5 @@
 import { SignOutUseCase } from "./SignOutUseCase";
-import { handleErrorResponse } from "../../../helpers/handleErrorResponse";
+import { ErrorResponseHandler } from "../../../helpers/handleErrorResponse";
 import { IHttpContextAdapter } from "../../../interfaces/IHttpContextAdapter";
 
 
@@ -12,7 +12,7 @@ export class SignOutController {
         try {
             await this.signOutUseCase.execute();
         } catch (error: any) {
-            handleErrorResponse(httpContextAdapter, error);
+            new ErrorResponseHandler(httpContextAdapter, error).handle();
         }
     }
 }

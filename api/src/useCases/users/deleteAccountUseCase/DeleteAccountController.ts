@@ -1,6 +1,6 @@
 import { DeleteAccountUseCase } from "./DeleteAccountUseCase";
 import { IHttpContextAdapter } from "../../../interfaces/IHttpContextAdapter";
-import { handleErrorResponse } from "../../../helpers/handleErrorResponse";
+import { ErrorResponseHandler } from "../../../helpers/handleErrorResponse";
 
 export class DeleteAccountController {
 
@@ -13,7 +13,7 @@ export class DeleteAccountController {
         try {
             this.deleteAccountUseCase.execute(uuid);
         } catch (error: any) {
-            handleErrorResponse(httpContextAdapter.getResponse(), error);
+            new ErrorResponseHandler(httpContextAdapter, error).handle();
         };
     };
 }

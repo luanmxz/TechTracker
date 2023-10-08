@@ -1,7 +1,7 @@
 import { ISignInDTO } from "./ISignInDTO";
 import { SignInUseCase } from "./SignInUseCase";
 import { IHttpContextAdapter } from "../../../interfaces/IHttpContextAdapter";
-import { handleErrorResponse } from "../../../helpers/handleErrorResponse";
+import { ErrorResponseHandler } from "../../../helpers/handleErrorResponse";
 
 
 export class SignInController {
@@ -15,7 +15,7 @@ export class SignInController {
         try {
             await this.signInUseCase.execute(logingUser);
         } catch (error: any) {
-            handleErrorResponse(httpContextAdapter.getResponse(), error);
+            new ErrorResponseHandler(httpContextAdapter, error).handle();
         }
     }
 }

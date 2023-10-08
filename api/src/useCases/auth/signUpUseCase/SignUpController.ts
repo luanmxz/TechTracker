@@ -1,6 +1,6 @@
 import { ISignUpDTO } from "./ISignUpDTO";
 import { SignUpUseCase } from "./SignUpUseCase";
-import { handleErrorResponse } from "../../../helpers/handleErrorResponse";
+import { ErrorResponseHandler } from "../../../helpers/handleErrorResponse";
 import { IHttpContextAdapter } from "../../../interfaces/IHttpContextAdapter";
 
 export class SignUpController {
@@ -13,7 +13,7 @@ export class SignUpController {
         try {
             await this.signUpUseCase.execute({ email, password, name });
         } catch (error: any) {
-            handleErrorResponse(httpContextAdapter.getResponse(), error);
+            new ErrorResponseHandler(httpContextAdapter, error).handle();
         }
     };
 }

@@ -1,16 +1,17 @@
-import { handleErrorResponse } from "../../../helpers/handleErrorResponse";
+import { ErrorResponseHandler } from "../../../helpers/handleErrorResponse";
 import { IHttpContextAdapter } from "../../../interfaces/IHttpContextAdapter";
 import { IUserDTO } from "../IUserDTO";
 import { GetAllUsersUseCase } from "./GetAllUsersUseCase";
 
 export class GetAllUsersController {
-    constructor(private getAllUsersUseCase: GetAllUsersUseCase){}
+    constructor(private getAllUsersUseCase: GetAllUsersUseCase) { }
 
     async handle(httpContextAdapter: IHttpContextAdapter) {
-        try{
-            return  await this.getAllUsersUseCase.execute();
-        } catch(error: any){
-            handleErrorResponse(httpContextAdapter, error);
+        try {
+            const users: IUserDTO[] = await this.getAllUsersUseCase.execute();
+            httpContextAdapter.send(users);
+        } catch (error: any) {
+            new ErrorResponseHandler(httpContextAdapter, error).handle();
         }
     }
 
