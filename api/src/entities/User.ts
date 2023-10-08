@@ -2,7 +2,7 @@ import { canUpdateUserValidate } from "../helpers/validators/CanUpdateUserValida
 import { validateEmail } from "../helpers/validators/EmailValidator";
 import { validateName } from "../helpers/validators/NameValidator";
 import { validatePassword } from "../helpers/validators/PasswordValidator";
-import { Role } from "./Role.enum";
+import { Role } from "../helpers/enums/Role.enum";
 
 export default class User {
 
