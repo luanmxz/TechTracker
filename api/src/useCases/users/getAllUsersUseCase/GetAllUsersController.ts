@@ -3,6 +3,7 @@ import { IHttpContextAdapter } from "../../../interfaces/IHttpContextAdapter";
 import { IUserDTO } from "../IUserDTO";
 import { GetAllUsersUseCase } from "./GetAllUsersUseCase";
 
+
 export class GetAllUsersController {
     constructor(private getAllUsersUseCase: GetAllUsersUseCase) { }
 

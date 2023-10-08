@@ -9,6 +9,7 @@ export class UserRepositoryImpl implements IUserRepository {
     async get(): Promise<IUserDTO[]> {
         return await this.prisma.user.findMany({
             select: {
+                id: true,
                 email: true,
                 name: true
             }
@@ -17,7 +18,7 @@ export class UserRepositoryImpl implements IUserRepository {
 
     async getById(id: string): Promise<IUserDTO> {
         return await this.prisma.user.findUniqueOrThrow({
-            select: { email: true, name: true },
+            select: { id: true, email: true, name: true },
             where: { id }
         });
     };
