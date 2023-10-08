@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
-import AuthRepositoryImpl from "../../../external/repository-implementations/AuthRepositoryImpl";
-import UserRepositoryImpl from "../../../external/repository-implementations/UserRepositoryImpl";
+import AuthRepositoryImpl from "../../../implementations/AuthRepositoryImpl";
+import UserRepositoryImpl from "../../../implementations/UserRepositoryImpl";
 import { SignOutUseCase } from "../../auth/signOutUseCase/SignOutUseCase";
 import { DeleteAccountController } from "./DeleteAccountController";
 import { DeleteAccountUseCase } from "./DeleteAccountUseCase";

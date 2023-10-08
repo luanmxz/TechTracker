@@ -1,4 +1,4 @@
-import AuthRepositoryImpl from "../../../external/repository-implementations/AuthRepositoryImpl";
+import AuthRepositoryImpl from "../../../implementations/AuthRepositoryImpl";
 import { IDependencyFactory } from "../../../interfaces/IDependencyFactory";
 import { SignOutController } from "./SignOutController";
 import { SignOutUseCase } from "./SignOutUseCase";
