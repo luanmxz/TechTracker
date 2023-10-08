@@ -8,10 +8,10 @@ export class DeleteAccountController {
 
     handler = async (httpContextAdapter: IHttpContextAdapter) => {
         //getLoggedUser;
-        const id = 'fakeId'; // loggedUser.id;
+        const uuid = 'fakeId'; // loggedUser.id;
 
         try {
-            this.deleteAccountUseCase.execute(id);
+            this.deleteAccountUseCase.execute(uuid);
         } catch (error: any) {
             handleErrorResponse(httpContextAdapter.getResponse(), error);
         };

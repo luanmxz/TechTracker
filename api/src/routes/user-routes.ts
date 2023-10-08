@@ -4,10 +4,25 @@ import { DeleteAccountContainer } from '../useCases/users/deleteAccountUseCase/D
 
 export default async function routes(fastify: FastifyInstance, options: RouteOptions) {
 
-    fastify.post('/api/users/deleteAccount', async (req, res) => {
-        const fastifyHttpAdapter = new FastifyHttpAdapter(req, res);
+    fastify.delete('/users', async (request, response) => {
+        const fastifyHttpAdapter = new FastifyHttpAdapter(request, response);
         const deleteAccountController = DeleteAccountContainer.getInstance().getControllerInstance();
         await deleteAccountController.handler(fastifyHttpAdapter);
     });
+
+    fastify.put('/users/:uuid', async (request, response) => {
+        const fastifyHttpAdapter = new FastifyHttpAdapter(request, response);
+        //TODO: implement update user method
+    });
+
+    fastify.get('/users', async (request, response) => {
+        const fastifyHttpAdapter = new FastifyHttpAdapter(request, response);
+        //TODO: implement get all users method
+    });
+
+    fastify.get('/users/:uuid', async (request, response) => {
+        const fastifyHttpAdapter = new FastifyHttpAdapter(request, response);
+        //TODO: implement get user by id method
+    })
 
 };

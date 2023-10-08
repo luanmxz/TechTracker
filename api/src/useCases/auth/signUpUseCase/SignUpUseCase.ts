@@ -1,5 +1,5 @@
 import User from "../../../entities/User";
-import IAuthRepository from "../../../interfaces/repositories/IAuthRepository";
+import { IAuthRepository } from "../../../interfaces/repositories/IAuthRepository";
 import { ISignUpDTO } from "./ISignUpDTO";
 
 export class SignUpUseCase {

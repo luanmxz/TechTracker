@@ -1,16 +1,11 @@
 import { IHttpContextAdapter } from "../../interfaces/IHttpContextAdapter";
 import { FastifyRequest, FastifyReply } from "fastify";
-import { handleErrorResponse } from "../../helpers/handleErrorResponse";
 
 export class FastifyHttpAdapter implements IHttpContextAdapter {
     constructor(private request: FastifyRequest, private response: FastifyReply) { }
 
     send(data: any, statusCode?: number | undefined): void {
         this.response.send(data);
-    };
-
-    json(data: any, statusCode?: number | undefined): void {
-        throw new Error("Not implemented yet, sorry");
     };
 
     status(statusCode: number): this {
@@ -26,17 +21,10 @@ export class FastifyHttpAdapter implements IHttpContextAdapter {
         }
     };
 
-    onError(error: Error): void {
-        handleErrorResponse(this.response, error);
-    };
-
-    getRequestHeader(name: string): string | undefined {
-        throw new Error("Method not implemented.");
-    };
-
-    getRequestBody() {
-        return this.request.body;
-    };
+    //Response
+    getResponse(): FastifyReply {
+        return this.response;
+    }
 
     getResponseHeader(name: string): string | undefined {
         return this.response.getHeader(name)?.toString();
@@ -52,12 +40,57 @@ export class FastifyHttpAdapter implements IHttpContextAdapter {
         return this;
     };
 
-    getResponse(): FastifyReply {
-        return this.response;
-    }
 
+    //Request
     getRequest(): FastifyRequest {
         return this.request;
     }
+
+    getRequestBody() {
+        return this.request.body;
+    };
+
+    getRequestHeader(name: string): string | undefined | string[] {
+        const headerValue = this.request.headers[name];
+
+        if (Array.isArray(headerValue)) {
+            // Se o header tiver múltiplos valores, retorne todos em um array
+            const valuesArray = headerValue.map((value) => `${name}: ${value}`);
+            return valuesArray;
+        }
+
+        return headerValue ? `${name}: ${headerValue}` : undefined;
+    }
+
+
+    getAllRequestHeaders(): { name: string; value: string | undefined }[] {
+        const headers: { name: string; value: string | undefined }[] = [];
+
+        for (const headerName in this.request.headers) {
+            const headerValue = this.request.headers[headerName];
+
+            if (Array.isArray(headerValue)) {
+                // Se o header tiver múltiplos valores, adiciona cada valor ao array
+                for (const value of headerValue) {
+                    headers.push({ name: headerName, value: value });
+                }
+            } else {
+                headers.push({ name: headerName, value: headerValue });
+            }
+        }
+
+        return headers;
+    }
+
+    json(data: any, statusCode?: number | undefined): void {
+        // fastify docs says that fastify SEND method already uses fast-json-stringify to serialize the data object passed as parameter
+        throw new Error("Not implemented yet, sorry!");
+    };
+
+    onError(error: Error): void {
+        throw new Error("Method not implemented, sorry!");
+    };
+
+
 
 }

@@ -17,7 +17,8 @@ export interface IHttpContextAdapter {
     onError(error: Error): void;
 
     // Props of request
-    getRequestHeader(name: string): string | undefined;
+    getAllRequestHeaders(): { name: string; value: string | undefined }[];
+    getRequestHeader(name: string): string | undefined | string[];
     getRequestBody(): any;
 
     // Props of response

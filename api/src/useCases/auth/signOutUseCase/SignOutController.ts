@@ -1,18 +1,18 @@
-import { FastifyReply, FastifyRequest } from "fastify";
 import { SignOutUseCase } from "./SignOutUseCase";
 import { handleErrorResponse } from "../../../helpers/handleErrorResponse";
+import { IHttpContextAdapter } from "../../../interfaces/IHttpContextAdapter";
 
 
 export class SignOutController {
     constructor(private signOutUseCase: SignOutUseCase) { }
 
 
-    handler = async (request: FastifyRequest, response: FastifyReply) => {
+    handler = async (httpContextAdapter: IHttpContextAdapter) => {
 
         try {
             await this.signOutUseCase.execute();
         } catch (error: any) {
-            handleErrorResponse(response, error);
+            handleErrorResponse(httpContextAdapter, error);
         }
     }
 }

@@ -1,9 +1,8 @@
-import { FastifyReply } from "fastify";
+import { IHttpContextAdapter } from "../interfaces/IHttpContextAdapter";
 
-export function handleErrorResponse(response: FastifyReply, error: any) {
+export function handleErrorResponse(httpContextAdapter: IHttpContextAdapter, error: any) {
 
     const statusCode = error.statusCode || 500;
 
-    response.status(statusCode).send(error.statusCode ? error.toJSON() : error);
-
+    httpContextAdapter.status(statusCode).send(error.statusCode ? error.toJSON() : error);
 }

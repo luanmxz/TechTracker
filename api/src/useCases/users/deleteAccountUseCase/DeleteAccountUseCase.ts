@@ -1,4 +1,4 @@
-import IUserRepository from "../../../interfaces/repositories/IUserRepository";
+import { IUserRepository } from "../../../interfaces/repositories/IUserRepository";
 import { SignOutUseCase } from "../../auth/signOutUseCase/SignOutUseCase";
 
 export class DeleteAccountUseCase {
@@ -8,9 +8,9 @@ export class DeleteAccountUseCase {
         private signOutUseCase: SignOutUseCase
     ) { }
 
-    async execute(id: string) {
+    async execute(uuid: string) {
         await this.signOutUseCase.execute().then(() => {
-            this.userRepository.deleteAccount(id);
+            this.userRepository.deleteAccount(uuid);
         });
     };
 }
