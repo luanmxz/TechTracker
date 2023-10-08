@@ -1,8 +1,8 @@
-import { Role } from "../utils/enums/Role";
-import { canUpdateUserValidate } from "../utils/validators/CanUpdateUserValidator";
-import validateEmail from "../utils/validators/EmailValidator";
-import validateName from "../utils/validators/NameValidator";
-import { validatePassword } from "../utils/validators/PasswordValidator";
+import { canUpdateUserValidate } from "../helpers/validators/CanUpdateUserValidator";
+import { validateEmail } from "../helpers/validators/EmailValidator";
+import { validateName } from "../helpers/validators/NameValidator";
+import { validatePassword } from "../helpers/validators/PasswordValidator";
+import { Role } from "./Role.enum";
 
 export default class User {
 

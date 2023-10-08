@@ -1,5 +1,6 @@
-import { InvalidPassword } from "../errors/InvalidPassword";
-import { atLeastEightChar, atLeastOneEspecialChar, atLeastOneMinnorCase, atLeastOneNumber, atLeastOneUpperCase } from '../helpers/RegexPassword';
+import { InvalidPassword } from "../../errors/InvalidPassword";
+import { atLeastOneMinnorCase, atLeastOneUpperCase, atLeastOneNumber, atLeastOneEspecialChar, atLeastEightChar } from "../../utils/regex/RegexPassword";
+
 
 export function validatePassword(password: string) {
 

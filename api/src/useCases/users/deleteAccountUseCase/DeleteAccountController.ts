@@ -1,7 +1,6 @@
-import { FastifyReply, FastifyRequest } from "fastify";
 import { DeleteAccountUseCase } from "./DeleteAccountUseCase";
 import { IHttpContextAdapter } from "../../../interfaces/IHttpContextAdapter";
-import { handleErrorResponse } from "../../../utils/helpers/handleErrorResponse";
+import { handleErrorResponse } from "../../../helpers/handleErrorResponse";
 
 export class DeleteAccountController {
 

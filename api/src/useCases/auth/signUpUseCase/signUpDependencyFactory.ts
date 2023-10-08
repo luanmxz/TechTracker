@@ -1,5 +1,5 @@
 import AuthRepositoryImpl from "../../../external/repository-implementations/AuthRepositoryImpl";
-import { IDependencyFactory } from "../../IDependencyFactory";
+import { IDependencyFactory } from "../../../interfaces/IDependencyFactory";
 import { SignUpController } from "./SignUpController";
 import { SignUpUseCase } from "./SignUpUseCase";
 

@@ -1,6 +1,7 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 import { SignOutUseCase } from "./SignOutUseCase";
-import { handleErrorResponse } from "../../../utils/helpers/HandleErrorResponse";
+import { handleErrorResponse } from "../../../helpers/handleErrorResponse";
+
 
 export class SignOutController {
     constructor(private signOutUseCase: SignOutUseCase) { }

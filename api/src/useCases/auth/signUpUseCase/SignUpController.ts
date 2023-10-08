@@ -1,7 +1,6 @@
-import { FastifyReply, FastifyRequest } from "fastify";
 import { ISignUpDTO } from "./ISignUpDTO";
 import { SignUpUseCase } from "./SignUpUseCase";
-import { handleErrorResponse } from "../../../utils/helpers/handleErrorResponse";
+import { handleErrorResponse } from "../../../helpers/handleErrorResponse";
 import { IHttpContextAdapter } from "../../../interfaces/IHttpContextAdapter";
 
 export class SignUpController {

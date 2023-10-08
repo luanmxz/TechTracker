@@ -1,7 +1,8 @@
-import { InvalidNameError } from "../errors/InvalidNameError";
-import { atLeastThreeChar, exceedNameMaxLenght, nameCannotContainEspecialChar } from "../helpers/regexName";
+import { InvalidNameError } from "../../errors/InvalidNameError";
+import { atLeastThreeChar, exceedNameMaxLenght, nameCannotContainEspecialChar } from "../../utils/regex/regexName";
 
-export default function validateName(name: string): void {
+
+export function validateName(name: string): void {
 
     if (!atLeastThreeChar.test(name)) throw new InvalidNameError('The name must have at least 3 characters.');
     if (exceedNameMaxLenght.test(name)) throw new InvalidNameError('Name too long. The name must have a maximum of 40 characters.');
