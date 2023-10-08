@@ -11,7 +11,7 @@ export class SignOutContainer implements IDependencyContainer {
     private readonly signOutUseCase: SignOutUseCase;
     private readonly signOutController: SignOutController;
 
-    constructor() {
+    private constructor() {
         this.authRepository = new AuthRepositoryImpl();
         this.signOutUseCase = new SignOutUseCase(this.authRepository);
         this.signOutController = new SignOutController(this.signOutUseCase);

@@ -12,7 +12,7 @@ export class GetAllUsersContainer implements IDependencyContainer {
     private getAllUsersUseCase: GetAllUsersUseCase;
     private getAllUsersController: GetAllUsersController;
 
-    constructor(){
+    private constructor() {
         this.prismaClient = new PrismaClient();
         this.usersRepository = new UserRepositoryImpl(this.prismaClient);
         this.getAllUsersUseCase = new GetAllUsersUseCase(this.usersRepository);
@@ -20,7 +20,7 @@ export class GetAllUsersContainer implements IDependencyContainer {
     }
 
     public static getInstance(): GetAllUsersContainer {
-        if(!GetAllUsersContainer.instance){
+        if (!GetAllUsersContainer.instance) {
             GetAllUsersContainer.instance = new GetAllUsersContainer();
         }
         return GetAllUsersContainer.instance;

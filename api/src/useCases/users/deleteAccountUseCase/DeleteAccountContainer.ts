@@ -18,7 +18,7 @@ export class DeleteAccountContainer implements IDependencyContainer {
     private readonly deleteAccountUseCase: DeleteAccountUseCase;
     private readonly deleteAccountController: DeleteAccountController;
 
-    constructor() {
+    private constructor() {
         this.prismaClient = new PrismaClient();
         this.authRepository = new AuthRepositoryImpl();
         this.signOutUseCase = new SignOutUseCase(this.authRepository);

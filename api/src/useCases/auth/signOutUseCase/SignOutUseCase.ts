@@ -1,4 +1,4 @@
-import IAuthRepository from "../../../interfaces/repositories/IAuthRepository";
+import { IAuthRepository } from "../../../interfaces/repositories/IAuthRepository";
 
 export class SignOutUseCase {
     constructor(private authRepository: IAuthRepository) { }

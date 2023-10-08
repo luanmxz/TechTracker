@@ -11,7 +11,7 @@ export class SignUpContainer implements IDependencyContainer {
     private readonly signUpUseCase: SignUpUseCase;
     private readonly signUpController: SignUpController;
 
-    constructor() {
+    private constructor() {
         this.authRepository = new AuthRepositoryImpl();
         this.signUpUseCase = new SignUpUseCase(this.authRepository);
         this.signUpController = new SignUpController(this.signUpUseCase);
