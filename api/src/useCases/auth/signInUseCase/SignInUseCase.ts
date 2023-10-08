@@ -1,8 +1,8 @@
-import AuthRepositoryImpl from "../../../external/repository-implementations/AuthRepositoryImpl";
+import IAuthRepository from "../../../interfaces/repositories/IAuthRepository";
 import { ISignInDTO } from "./ISignInDTO";
 
 export class SignInUseCase {
-    constructor(private authRepository: AuthRepositoryImpl) {}
+    constructor(private authRepository: IAuthRepository) { }
 
     execute = async (logingUser: ISignInDTO) => {
         await this.authRepository.signIn(logingUser);

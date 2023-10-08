@@ -1,9 +1,9 @@
 import { PrismaClient } from "@prisma/client";
-import UserRepository from "../../useCases/users/UserRepository";
 import { IUserDTO } from "../../useCases/users/IUserDTO";
+import IUserRepository from "../../interfaces/repositories/IUserRepository";
 
-export default class UserRepositoryImpl implements UserRepository {
-    
+export default class UserRepositoryImpl implements IUserRepository {
+
     constructor(private readonly prisma: PrismaClient) { }
 
     async get(): Promise<IUserDTO[]> {

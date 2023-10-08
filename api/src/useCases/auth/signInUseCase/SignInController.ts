@@ -1,20 +1,22 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 import { ISignInDTO } from "./ISignInDTO";
 import { SignInUseCase } from "./SignInUseCase";
-import { handleErrorResponse } from "../../../utils/helpers/HandleErrorResponse";
+import { IHttpContextAdapter } from "../../../interfaces/IHttpContextAdapter";
+import { handleErrorResponse } from "../../../utils/helpers/handleErrorResponse";
+
 
 export class SignInController {
     constructor(private signInUseCase: SignInUseCase) { }
 
 
-    handler = async (request: FastifyRequest, response: FastifyReply) => {
+    handler = async (httpContextAdapter: IHttpContextAdapter) => {
 
-        const logingUser = request.body as ISignInDTO;
+        const logingUser = httpContextAdapter.getRequestBody() as ISignInDTO;
 
         try {
             await this.signInUseCase.execute(logingUser);
         } catch (error: any) {
-            handleErrorResponse(response, error);
+            handleErrorResponse(httpContextAdapter.getResponse(), error);
         }
     }
 }

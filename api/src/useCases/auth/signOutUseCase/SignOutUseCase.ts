@@ -1,7 +1,7 @@
-import AuthRepositoryImpl from "../../../external/repository-implementations/AuthRepositoryImpl";
+import IAuthRepository from "../../../interfaces/repositories/IAuthRepository";
 
 export class SignOutUseCase {
-    constructor(private authRepository: AuthRepositoryImpl) {}
+    constructor(private authRepository: IAuthRepository) { }
 
     execute = async () => {
         await this.authRepository.signOut();

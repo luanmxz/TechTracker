@@ -1,12 +1,12 @@
+import IUserRepository from "../../../interfaces/repositories/IUserRepository";
 import { SignOutUseCase } from "../../auth/signOutUseCase/SignOutUseCase";
-import UserRepository from "../UserRepository";
 
 export class DeleteAccountUseCase {
 
     constructor(
-        private userRepository: UserRepository,
+        private userRepository: IUserRepository,
         private signOutUseCase: SignOutUseCase
-    ){}
+    ) { }
 
     async execute(id: string) {
         await this.signOutUseCase.execute().then(() => {

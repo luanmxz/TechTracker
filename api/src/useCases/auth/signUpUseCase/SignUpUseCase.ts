@@ -1,9 +1,9 @@
 import User from "../../../entities/User";
-import AuthRepositoryImpl from "../../../external/repository-implementations/AuthRepositoryImpl";
+import IAuthRepository from "../../../interfaces/repositories/IAuthRepository";
 import { ISignUpDTO } from "./ISignUpDTO";
 
 export class SignUpUseCase {
-    constructor(private authRepository: AuthRepositoryImpl) {}
+    constructor(private authRepository: IAuthRepository) { }
 
 
     execute = async (user: ISignUpDTO) => {

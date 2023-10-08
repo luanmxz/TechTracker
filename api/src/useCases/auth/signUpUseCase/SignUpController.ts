@@ -1,20 +1,20 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 import { ISignUpDTO } from "./ISignUpDTO";
 import { SignUpUseCase } from "./SignUpUseCase";
-import { handleErrorResponse } from "../../../utils/helpers/HandleErrorResponse";
+import { handleErrorResponse } from "../../../utils/helpers/handleErrorResponse";
+import { IHttpContextAdapter } from "../../../interfaces/IHttpContextAdapter";
 
 export class SignUpController {
     constructor(private signUpUseCase: SignUpUseCase) { }
 
+    async handler(httpContextAdapter: IHttpContextAdapter) {
 
-    async handler(request: FastifyRequest, response: FastifyReply) {
-
-        const { email, password, name } = request.body as ISignUpDTO;
+        const { email, password, name } = httpContextAdapter.getRequestBody() as ISignUpDTO;
 
         try {
             await this.signUpUseCase.execute({ email, password, name });
         } catch (error: any) {
-            handleErrorResponse(response, error);
+            handleErrorResponse(httpContextAdapter.getResponse(), error);
         }
     };
 }

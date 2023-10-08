@@ -1,6 +1,7 @@
-import { IUserDTO } from "./IUserDTO";
+import { IUserDTO } from "../../useCases/users/IUserDTO";
 
-export default interface UserRepository {
+
+export default interface IUserRepository {
 
     get: () => Promise<IUserDTO[]>;
     getById: (id: string) => Promise<IUserDTO>;
