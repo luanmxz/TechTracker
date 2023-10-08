@@ -1,13 +1,15 @@
+import { Role } from '../../src/entities/Role.enum';
 import User from '../../src/entities/User';
 
 test('should create a new user', () => {
 
-    const user = new User("", 'test@gmail.com', 'test', 'test123');
+    const user = new User("", 'test@gmail.com', 'test', 'Teste123@.', [Role.ADMIN]);
 
-    const newUser = User.createUser('test@gmail.com', 'test', 'test123');
+    const newUser = User.createUser('test@gmail.com', 'test', 'Teste123@.', [Role.ADMIN]);
 
     expect(newUser.getEmail).toStrictEqual(user.getEmail);
     expect(newUser.getName).toStrictEqual(user.getName);
+    expect(newUser.getRoles).toStrictEqual(user.getRoles);
 });
 
 

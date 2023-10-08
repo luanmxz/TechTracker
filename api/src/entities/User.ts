@@ -27,13 +27,15 @@ export default class User {
         this.updatedAt = updatedAt;
         this.active = active;
         this.banned = banned;
+
+        this.roles.push(Role.USER);
     }
 
-    static createUser(email: string, name: string, password: string): User {
+    static createUser(email: string, name: string, password: string, roles?: Role[]): User {
         validateEmail(email);
         validateName(name);
         validatePassword(password);
-        return new User("", email, name, password);
+        return new User("", email, name, password, roles ?? []);
     }
 
     public updateEmail(email: string): void {
