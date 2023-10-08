@@ -1,10 +1,10 @@
-import supabase from "../external/supabase/supabase";
+import { supabase } from "../external/supabase/supabase";
 import { ISignInDTO } from "../useCases/auth/signInUseCase/ISignInDTO";
 import { ISignUpDTO } from "../useCases/auth/signUpUseCase/ISignUpDTO";
-import IAuthRepository from "../interfaces/repositories/IAuthRepository";
+import { IAuthRepository } from "../interfaces/repositories/IAuthRepository";
 
 
-export default class AuthRepositoryImpl implements IAuthRepository {
+export class AuthRepositoryImpl implements IAuthRepository {
 
     constructor() { }
 

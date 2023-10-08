@@ -1,13 +1,12 @@
 import { FastifyInstance, RouteOptions } from 'fastify';
-import { DeleteAccountDependencyFactory } from '../useCases/users/deleteAccountUseCase/DeleteAccountDependencyFactory';
 import { FastifyHttpAdapter } from '../external/fastify/FastifyHttpAdapter';
-
-const deleteAccountController = new DeleteAccountDependencyFactory().getInstance();
+import { DeleteAccountContainer } from '../useCases/users/deleteAccountUseCase/DeleteAccountContainer';
 
 export default async function routes(fastify: FastifyInstance, options: RouteOptions) {
 
     fastify.post('/api/users/deleteAccount', async (req, res) => {
         const fastifyHttpAdapter = new FastifyHttpAdapter(req, res);
+        const deleteAccountController = DeleteAccountContainer.getInstance().getControllerInstance();
         await deleteAccountController.handler(fastifyHttpAdapter);
     });
 

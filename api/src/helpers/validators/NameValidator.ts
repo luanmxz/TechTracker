@@ -1,5 +1,6 @@
 import { InvalidNameError } from "../../errors/InvalidNameError";
-import { atLeastThreeChar, exceedNameMaxLenght, nameCannotContainEspecialChar } from "../../utils/regex/regexName";
+import { atLeastThreeChar, exceedNameMaxLenght, nameCannotContainEspecialChar } from "../../utils/regex/RegexName";
+
 
 
 export function validateName(name: string): void {

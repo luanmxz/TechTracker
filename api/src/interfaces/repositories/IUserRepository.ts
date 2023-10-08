@@ -1,7 +1,7 @@
 import { IUserDTO } from "../../useCases/users/IUserDTO";
 
 
-export default interface IUserRepository {
+export interface IUserRepository {
 
     get: () => Promise<IUserDTO[]>;
     getById: (id: string) => Promise<IUserDTO>;

@@ -1,5 +1,6 @@
 import { InvalidEmailError } from "../../errors/InvalidEmailError";
-import { emailRegex } from "../../utils/regex/regexEmail";
+import { emailRegex } from "../../utils/regex/RegexEmail";
+
 
 
 export function validateEmail(email: string): void {
