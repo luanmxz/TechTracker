@@ -1,6 +1,6 @@
 import { FastifyInstance, RouteOptions } from 'fastify';
-import { DeleteAccountDependencyFactory } from '../../useCases/users/deleteAccountUseCase/DeleteAccountDependencyFactory';
-import { FastifyHttpAdapter } from '../fastify/FastifyHttpAdapter';
+import { DeleteAccountDependencyFactory } from '../useCases/users/deleteAccountUseCase/DeleteAccountDependencyFactory';
+import { FastifyHttpAdapter } from '../external/fastify/FastifyHttpAdapter';
 
 const deleteAccountController = new DeleteAccountDependencyFactory().getInstance();
 

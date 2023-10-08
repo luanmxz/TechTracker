@@ -1,7 +1,7 @@
 import { FastifyInstance, RouteOptions } from 'fastify';
-import { SignInDependencyFactory } from '../../useCases/auth/signInUseCase/SignInDepedencyFactory';
-import { SignUpDependencyFactory } from '../../useCases/auth/signUpUseCase/SignUpDependencyFactory';
-import { FastifyHttpAdapter } from '../fastify/FastifyHttpAdapter';
+import { SignInDependencyFactory } from '../useCases/auth/signInUseCase/SignInDepedencyFactory';
+import { SignUpDependencyFactory } from '../useCases/auth/signUpUseCase/SignUpDependencyFactory';
+import { FastifyHttpAdapter } from '../external/fastify/FastifyHttpAdapter';
 
 const signUpController = new SignUpDependencyFactory().getInstance();
 const signInController = new SignInDependencyFactory().getInstance();
