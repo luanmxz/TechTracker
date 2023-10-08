@@ -16,7 +16,7 @@ export default class User {
     private active: boolean;
     private banned: boolean;
 
-    constructor(UUID: string = "", email: string = "", name: string = "", password: string = "", roles: Role[] = [],
+    constructor(UUID: string = "", email: string = "", name: string = "", password: string = "", roles: Role[] = [Role.USER],
         createdAt: Date = new Date(), updatedAt: Date = new Date(), active: boolean = true, banned: boolean = false) {
         this.UUID = UUID;
         this.email = email;
@@ -31,11 +31,11 @@ export default class User {
         this.roles.push(Role.USER);
     }
 
-    static createUser(email: string, name: string, password: string, roles?: Role[]): User {
+    static createUser(email: string, name: string, password: string): User {
         validateEmail(email);
         validateName(name);
         validatePassword(password);
-        return new User("", email, name, password, roles ?? []);
+        return new User("", email, name, password);
     }
 
     public updateEmail(email: string): void {
@@ -56,9 +56,9 @@ export default class User {
         this.password = password;
     }
 
-    public addRole(role: Role) {
+    public addRoles(roles: Role[]) {
         canUpdateUserValidate(this.isBanned, this.isActive);
-        this.roles.push(role);
+        roles.map(role => this.roles.push(role));
     }
 
     public get getUUID(): string {
