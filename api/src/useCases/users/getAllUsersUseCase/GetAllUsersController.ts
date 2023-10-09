@@ -10,7 +10,7 @@ export class GetAllUsersController {
     async handle(httpContextAdapter: IHttpContextAdapter) {
         try {
             const users: IUserDTO[] = await this.getAllUsersUseCase.execute();
-            httpContextAdapter.send(users);
+            return httpContextAdapter.send(users);
         } catch (error: any) {
             new ErrorResponseHandler(httpContextAdapter, error).handle();
         }
