@@ -2,7 +2,7 @@ import { IUserRepository } from "../../../interfaces/repositories/IUserRepositor
 import { IUserDTO } from "../IUserDTO";
 
 export class GetAllUsersUseCase {
-    constructor(private usersRepository: IUserRepository){}
+    constructor(private usersRepository: IUserRepository) { }
 
     execute(): Promise<IUserDTO[]> {
         return this.usersRepository.get();

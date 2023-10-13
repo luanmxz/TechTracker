@@ -13,6 +13,8 @@ export class UserRepositoryImpl implements IUserRepository {
                 email: true,
                 name: true
             }
+        }).catch(error => {
+            throw new Error(error.message);
         });
     };
 
