@@ -13,7 +13,7 @@ export default async function routes(fastify: FastifyInstance, options: RouteOpt
         await signUpController.handler(fastifyHttpAdapter);
     });
 
-    fastify.get('/auth/signIn', async (request: FastifyRequest, response: FastifyReply) => {
+    fastify.post('/auth/signIn', async (request: FastifyRequest, response: FastifyReply) => {
         const fastifyHttpAdapter = new FastifyHttpAdapter(request, response);
         const signInController = SignInContainer.getInstance().getControllerInstance();
         await signInController.handler(fastifyHttpAdapter);
