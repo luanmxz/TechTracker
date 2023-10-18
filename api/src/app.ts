@@ -10,7 +10,7 @@ const fastify = Fastify({
 	logger: true,
 });
 
-fastify.register(cors, {});
+fastify.register(cors, { origin: 'http://localhost:3000' });
 fastify.register(userRoutes);
 fastify.register(authRoutes);
 
