@@ -10,6 +10,8 @@ export class GetUserLoggedController {
         try {
             const user: User | null = await this.getUserLoggedUseCase.execute();
 
+            //TODO: get user from public.users, there is the profile pic and etc
+
             httpContextAdapter.send(user);
         } catch (error: any) {
             new ErrorResponseHandler(httpContextAdapter, error).handle();
