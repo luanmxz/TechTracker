@@ -2,6 +2,7 @@ import { supabase } from "../external/supabase/supabase";
 import { ISignInDTO } from "../useCases/auth/signInUseCase/ISignInDTO";
 import { ISignUpDTO } from "../useCases/auth/signUpUseCase/ISignUpDTO";
 import { IAuthRepository } from "../interfaces/repositories/IAuthRepository";
+import { User } from "@supabase/supabase-js";
 
 
 export class AuthRepositoryImpl implements IAuthRepository {
@@ -38,5 +39,10 @@ export class AuthRepositoryImpl implements IAuthRepository {
         if (error) throw error;
     };
 
+    async getUserLogged(): Promise<User | null> {
 
+        const { data } = await supabase.auth.getUser();
+
+        return data.user;
+    }
 }

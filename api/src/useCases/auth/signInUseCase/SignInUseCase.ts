@@ -1,4 +1,4 @@
-import IAuthRepository from "../../../interfaces/repositories/IAuthRepository";
+import { IAuthRepository } from "../../../interfaces/repositories/IAuthRepository";
 import { ISignInDTO } from "./ISignInDTO";
 
 export class SignInUseCase {
