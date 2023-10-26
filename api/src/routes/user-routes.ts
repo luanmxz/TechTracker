@@ -25,6 +25,5 @@ export default async function routes(fastify: FastifyInstance, options: RouteOpt
     fastify.get('/users/:uuid', async (request: FastifyRequest, response: FastifyReply) => {
         const fastifyHttpAdapter = new FastifyHttpAdapter(request, response);
         //TODO: implement get user by id method
-    })
-
+    });
 };

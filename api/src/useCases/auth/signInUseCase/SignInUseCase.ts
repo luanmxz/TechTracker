@@ -5,6 +5,6 @@ export class SignInUseCase {
     constructor(private authRepository: IAuthRepository) { }
 
     execute = async (logingUser: ISignInDTO) => {
-        await this.authRepository.signIn(logingUser);
+        return await this.authRepository.signIn(logingUser);
     }
 }

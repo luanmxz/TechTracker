@@ -31,4 +31,6 @@ export default async function routes(fastify: FastifyInstance, options: RouteOpt
         const getUserLoggedController = GetUserLoggedContainer.getInstance().getControllerInstance();
         await getUserLoggedController.handler(fastifyHttpAdapter);
     })
+
+
 }

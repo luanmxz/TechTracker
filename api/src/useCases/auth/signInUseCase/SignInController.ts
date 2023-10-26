@@ -13,7 +13,10 @@ export class SignInController {
         const logingUser = httpContextAdapter.getRequestBody() as ISignInDTO;
 
         try {
-            await this.signInUseCase.execute(logingUser);
+            const data = await this.signInUseCase.execute(logingUser);
+
+            await httpContextAdapter.send(data);
+
         } catch (error: any) {
             new ErrorResponseHandler(httpContextAdapter, error).handle();
         }

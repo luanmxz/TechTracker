@@ -6,7 +6,6 @@ import { User } from "@supabase/supabase-js";
 
 
 export class AuthRepositoryImpl implements IAuthRepository {
-
     constructor() { }
 
     async signUp(newUser: ISignUpDTO) {
@@ -15,7 +14,7 @@ export class AuthRepositoryImpl implements IAuthRepository {
             password: newUser.password,
             options: {
                 data: {
-                    name: newUser.name
+                    name: newUser.name,
                 }
             }
         });
@@ -23,15 +22,13 @@ export class AuthRepositoryImpl implements IAuthRepository {
         if (error) throw error;
     };
 
-
     async signIn(user: ISignInDTO) {
         const { data, error } = await supabase.auth.signInWithPassword(user);
 
         if (error) throw error;
 
-        return user;
+        return data;
     };
-
 
     async signOut() {
         const { error } = await supabase.auth.signOut({ scope: 'global' });
@@ -40,7 +37,6 @@ export class AuthRepositoryImpl implements IAuthRepository {
     };
 
     async getUserLogged(): Promise<User | null> {
-
         const { data } = await supabase.auth.getUser();
 
         return data.user;
