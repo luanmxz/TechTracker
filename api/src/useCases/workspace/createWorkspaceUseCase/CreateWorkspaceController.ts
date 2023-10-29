@@ -1,21 +1,15 @@
-import { User } from "@supabase/supabase-js";
 import { ErrorResponseHandler } from "../../../helpers/handleErrorResponse";
 import { IHttpContextAdapter } from "../../../interfaces/IHttpContextAdapter";
-import { GetUserLoggedContainer } from "../../auth/getUserLoggedUseCase/GetUserLoggedContainer";
 import { CreateWorkspaceDTO } from "./CreateWorkspaceDTO";
-import { CreateWorkspaceUseCase } from "./createWorkspaceUseCase";
+import { CreateWorkspaceUseCase } from "./CreateWorkspaceUseCase";
 
 export class CreateWorkspaceController {
     constructor(private createWorkspaceUseCase: CreateWorkspaceUseCase) { }
 
     async handle(httpContextAdapter: IHttpContextAdapter) {
-        const { name, description } = httpContextAdapter.getRequestBody();
+        const { name, description, userId } = httpContextAdapter.getRequestBody() as CreateWorkspaceDTO;
 
-        const owner: User | null = await GetUserLoggedContainer.getInstance().getUseCaseInstance().execute();
-
-
-
-        const newWorkspace: CreateWorkspaceDTO = { name, description, userId: owner!.id };
+        const newWorkspace: CreateWorkspaceDTO = { name, description, userId };
 
         try {
             await this.createWorkspaceUseCase.execute(newWorkspace);

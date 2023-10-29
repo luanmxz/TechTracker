@@ -2,8 +2,8 @@ import { PrismaClient } from "@prisma/client";
 import { IDependencyContainer } from "../../../interfaces/IDependencyContainer";
 import { IWorkspaceRepository } from "../../../interfaces/repositories/IWorkspaceRepository";
 import { WorkspaceRepositoryImpl } from "../../../implementations/WorkspaceRepositoryImpl";
-import { CreateWorkspaceUseCase } from "./createWorkspaceUseCase";
-import { CreateWorkspaceController } from "./createWorkspaceController";
+import { CreateWorkspaceUseCase } from "./CreateWorkspaceUseCase";
+import { CreateWorkspaceController } from "./CreateWorkspaceController";
 
 export class CreateWorkspaceContainer implements IDependencyContainer {
     private static instance: CreateWorkspaceContainer;

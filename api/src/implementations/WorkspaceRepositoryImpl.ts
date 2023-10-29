@@ -1,8 +1,6 @@
 import { PrismaClient } from "@prisma/client";
-import Workspace from "../entities/Workspace";
-import { supabase } from "../external/supabase/supabase";
 import { IWorkspaceRepository } from "../interfaces/repositories/IWorkspaceRepository";
-import { ErrorResponseHandler } from "../helpers/handleErrorResponse";
+import Workspace from "../entities/Workspace";
 
 export class WorkspaceRepositoryImpl implements IWorkspaceRepository {
     constructor(private prismaClient: PrismaClient) { }
@@ -10,23 +8,55 @@ export class WorkspaceRepositoryImpl implements IWorkspaceRepository {
     get(id: string): Promise<Workspace> {
         throw new Error("Method not implemented.");
     }
-    getAll(userId: string): Promise<Workspace[]> {
-        throw new Error("Method not implemented.");
+
+    async getAll(userId: string): Promise<Workspace[]> {
+        try {
+            const workspacesData = await this.prismaClient.workspace.findMany({
+                where: { userId: userId, active: true },
+                include: {
+                    columns: true,
+                    User: { select: { id: true, name: true, email: true } }
+                }
+            });
+
+            const workspaces: Workspace[] = workspacesData.map(workspaceData => {
+                const workspace = new Workspace(
+                    workspaceData.id,
+                    workspaceData.title,
+                    workspaceData.description ?? "",
+                    workspaceData.User.id,
+                    workspaceData.createdAt,
+                    workspaceData.updatedAt,
+                    false,//column ISLOCKED, TODO: ADD COLUM TO DB
+                    workspaceData.columns,
+                    workspaceData.active
+                );
+                return workspace;
+            });
+            return workspaces;
+        } catch (error: any) {
+            throw new error(error);
+        }
     }
+
     update(Workspace: Workspace): Promise<void> {
         throw new Error("Method not implemented.");
     }
+
     delete(id: string): Promise<void> {
         throw new Error("Method not implemented.");
     }
+
     async create(workspace: Workspace): Promise<void> {
         try {
             await this.prismaClient.workspace.create({
                 data: {
-                    title: workspace.getName,
+                    title: workspace.getTitle,
                     description: workspace.getDescription,
                     createdAt: workspace.getCreatedAt,
-                    userId: workspace.getUserId,
+                    User: {
+                        connect: { id: workspace.getUserId },
+                    }
                 }
             })
         } catch (error: any) {
