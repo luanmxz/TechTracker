@@ -61,7 +61,6 @@ model Card {
   description String? @db.VarChar()
   User User @relation(fields: [userId], references: [id])
   userId String
-  workspaceId String
   Column Column @relation(fields: [columnId], references: [id])
   columnId String
   comments Comment[]

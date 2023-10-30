@@ -18,9 +18,23 @@ export class CardRepositoryImpl implements ICardRepository {
     delete(id: string): Promise<void> {
         throw new Error("Method not implemented.");
     }
-    create(card: Card): Promise<void> {
-        throw new Error("Method not implemented.");
+
+    async create(card: Card): Promise<void> {
+        try {
+            await this.prismaClient.card.create({
+                data: {
+                    title: card.getTitle,
+                    description: card.getDescription,
+                    Column: {
+                        connect: { id: card.getColumnId }
+                    },
+                    User: {
+                        connect: { id: card.getUserId }
+                    }
+                },
+            })
+        } catch (error: any) {
+            throw new Error(error);
+        }
     }
-
-
 }

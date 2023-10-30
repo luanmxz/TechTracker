@@ -4,8 +4,8 @@ import { ICardRepository } from "../../../interfaces/repositories/ICardRepositor
 export class CreateCardUseCase {
     constructor(private cardRepository: ICardRepository) { }
 
-    execute = async () => {
+    execute = async (card: Card) => {
 
-        await this.cardRepository.create(new Card());
+        await this.cardRepository.create(card);
     }
 }
