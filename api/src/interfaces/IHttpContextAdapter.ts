@@ -20,6 +20,7 @@ export interface IHttpContextAdapter {
     getAllRequestHeaders(): { name: string; value: string | undefined }[];
     getRequestHeader(name: string): string | undefined | string[];
     getRequestBody(): any;
+    getRequestParams(): any;
 
     // Props of response
     getResponseHeader(name: string): string | undefined;

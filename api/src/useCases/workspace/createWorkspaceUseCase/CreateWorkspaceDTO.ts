@@ -1,5 +1,5 @@
 export interface CreateWorkspaceDTO {
-    name: string;
-    description?: string;
+    title: string;
     userId: string;
+    description?: string;
 }

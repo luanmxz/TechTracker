@@ -7,6 +7,8 @@ export class CreateWorkspaceUseCase {
 
     execute = async (createWorkspaceDTO: CreateWorkspaceDTO) => {
 
+        if (createWorkspaceDTO.description === undefined) createWorkspaceDTO.description = '';
+
         const newWorkspace = Workspace.createWorkspace(createWorkspaceDTO);
 
         await this.workspaceRepository.create(newWorkspace);

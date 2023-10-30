@@ -8,7 +8,7 @@ export class GetAllWorkspacesController {
 
     async handle(httpContextAdapter: IHttpContextAdapter) {
 
-        const userId: string = await httpContextAdapter.getRequestBody();
+        const userId: string = await httpContextAdapter.getRequestParams().userId;
 
         try {
             const workspaces: Workspace[] = await this.getAllWorkspacesUseCase.execute(userId);

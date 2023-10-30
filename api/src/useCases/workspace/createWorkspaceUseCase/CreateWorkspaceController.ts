@@ -7,9 +7,8 @@ export class CreateWorkspaceController {
     constructor(private createWorkspaceUseCase: CreateWorkspaceUseCase) { }
 
     async handle(httpContextAdapter: IHttpContextAdapter) {
-        const { name, description, userId } = httpContextAdapter.getRequestBody() as CreateWorkspaceDTO;
 
-        const newWorkspace: CreateWorkspaceDTO = { name, description, userId };
+        const newWorkspace: CreateWorkspaceDTO = httpContextAdapter.getRequestBody() as CreateWorkspaceDTO;
 
         try {
             await this.createWorkspaceUseCase.execute(newWorkspace);

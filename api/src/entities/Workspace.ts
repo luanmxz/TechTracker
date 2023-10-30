@@ -30,7 +30,7 @@ export default class Workspace {
     }
 
     static createWorkspace(createWorkspaceDTO: CreateWorkspaceDTO): Workspace {
-        return new Workspace("", createWorkspaceDTO.name, createWorkspaceDTO.description, createWorkspaceDTO.userId);
+        return new Workspace("", createWorkspaceDTO.title, createWorkspaceDTO.description, createWorkspaceDTO.userId);
     }
 
     public get getId(): string {

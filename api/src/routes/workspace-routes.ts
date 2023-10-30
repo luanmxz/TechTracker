@@ -11,7 +11,7 @@ export default async function routes(fastify: FastifyInstance, options: RouteOpt
         await createWorkspaceController.handle(fastifyHttpAdapter);
     });
 
-    fastify.get('/workspaces', async (request: FastifyRequest, response: FastifyReply) => {
+    fastify.get('/workspaces/:userId', async (request: FastifyRequest, response: FastifyReply) => {
         const fastifyHttpAdapter = new FastifyHttpAdapter(request, response);
         const getAllWorkspaceController = GetAllWorkspacesContainer.getInstance().getControllerInstance();
         await getAllWorkspaceController.handle(fastifyHttpAdapter);
