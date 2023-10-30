@@ -5,14 +5,16 @@ export default class Card {
     private createdAt: Date;
     private updatedAt: Date;
     private columnId: string;
+    private userId: string;
 
-    constructor(id: string = "", title: string = "", description: string = "", columnId: string, createdAt: Date = new Date(), updatedAt: Date = new Date()) {
+    constructor(id: string = "", title: string = "", description: string = "", columnId: string = "", userId: string = "", createdAt: Date = new Date(), updatedAt: Date = new Date()) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.columnId = columnId;
+        this.userId = userId;
     };
 
     public get getId(): string {
@@ -37,5 +39,9 @@ export default class Card {
 
     public get getColumnId(): string {
         return this.columnId;
+    }
+
+    public get getUserId(): string {
+        return this.userId;
     }
 }

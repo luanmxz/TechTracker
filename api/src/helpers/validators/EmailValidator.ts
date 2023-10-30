@@ -1,5 +1,5 @@
 import { InvalidEmailError } from "../../errors/InvalidEmailError";
-import { emailRegex } from "../../utils/regex/RegexEmail";
+import { emailRegex } from "../regex/RegexEmail";
 
 
 

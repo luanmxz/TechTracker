@@ -1,5 +1,5 @@
 import { InvalidNameError } from "../../errors/InvalidNameError";
-import { atLeastThreeChar, exceedNameMaxLenght, nameCannotContainEspecialChar } from "../../utils/regex/RegexName";
+import { atLeastThreeChar, exceedNameMaxLenght, nameCannotContainEspecialChar } from "../regex/RegexName";
 
 
 
