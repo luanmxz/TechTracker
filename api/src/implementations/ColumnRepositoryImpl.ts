@@ -18,8 +18,19 @@ export class ColumnRepositoryImpl implements IColumnRepository {
     delete(id: string): Promise<void> {
         throw new Error("Method not implemented.");
     }
-    create(column: Column): Promise<void> {
-        throw new Error("Method not implemented.");
+    async create(column: Column): Promise<void> {
+        await this.prismaClient.column.create({
+            data: {
+                title: column.getTitle,
+                order: 0,
+                User: {
+                    connect: { id: column.getUserId }
+                },
+                Workspace: {
+                    connect: { id: column.getWorkspaceId }
+                }
+            }
+        })
     }
 
 

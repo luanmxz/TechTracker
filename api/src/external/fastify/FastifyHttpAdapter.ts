@@ -54,6 +54,10 @@ export class FastifyHttpAdapter implements IHttpContextAdapter {
         return this.request.params
     }
 
+    getRequestQuery(): FastifyRequest["query"] {
+        return this.request.query;
+    }
+
     getRequestHeader(name: string): string | undefined | string[] {
         const headerValue = this.request.headers[name];
 

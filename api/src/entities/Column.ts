@@ -6,14 +6,16 @@ export default class Column {
     private title: string;
     private cards: Card[];
     private workspaceId: string;
+    private userId: string;
     private createdAt: Date;
     private updatedAt: Date;
 
-    constructor(id: string = "", title: string = "", cards: Card[] = [], workspaceId: string = "", createdAt: Date = new Date(), updatedAt: Date = new Date()) {
+    constructor(id: string = "", title: string = "", workspaceId: string = "", userId: string = "", cards: Card[] = [], createdAt: Date = new Date(), updatedAt: Date = new Date()) {
         this.id = id;
         this.title = title;
-        this.cards = cards;
         this.workspaceId = workspaceId;
+        this.userId = userId;
+        this.cards = cards;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
@@ -40,5 +42,9 @@ export default class Column {
 
     public get getWorkspaceId(): string {
         return this.workspaceId;
+    }
+
+    public get getUserId(): string {
+        return this.userId;
     }
 }

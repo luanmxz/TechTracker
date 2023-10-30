@@ -3,6 +3,7 @@ import Fastify from 'fastify';
 import userRoutes from './routes/user-routes';
 import authRoutes from './routes/auth-routes';
 import workspaceRoutes from './routes/workspace-routes';
+import columnRoutes from './routes/column-routes';
 import cors from '@fastify/cors';
 
 const port = parseInt(process.env.PORT as string, 10);
@@ -15,6 +16,7 @@ fastify.register(cors, { origin: 'http://localhost:3000' });
 fastify.register(userRoutes);
 fastify.register(authRoutes);
 fastify.register(workspaceRoutes);
+fastify.register(columnRoutes);
 
 fastify.listen({ port: port || 3333 }, function (err, address) {
 	if (err) {
