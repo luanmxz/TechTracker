@@ -15,7 +15,7 @@ export class WorkspaceRepositoryImpl implements IWorkspaceRepository {
                 where: { userId: userId, active: true },
                 include: {
                     columns: true,
-                    User: { select: { id: true, name: true, email: true } }
+                    User: { select: { id: true } }
                 }
             });
 

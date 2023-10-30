@@ -6,6 +6,7 @@ export class GetAllWorkspacesUseCase {
     constructor(private workspaceRepository: IWorkspaceRepository) { }
 
     execute = async (userId: string): Promise<Workspace[]> => {
-        return await this.workspaceRepository.getAll(userId);
+        const workspaces: Workspace[] = await this.workspaceRepository.getAll(userId);
+        return workspaces;
     }
 }
