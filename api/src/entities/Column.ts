@@ -5,13 +5,15 @@ export default class Column {
     private id: string;
     private title: string;
     private cards: Card[];
+    private workspaceId: string;
     private createdAt: Date;
     private updatedAt: Date;
 
-    constructor(id: string = "", title: string = "", cards: Card[] = [], createdAt: Date = new Date(), updatedAt: Date = new Date()) {
+    constructor(id: string = "", title: string = "", cards: Card[] = [], workspaceId: string = "", createdAt: Date = new Date(), updatedAt: Date = new Date()) {
         this.id = id;
         this.title = title;
         this.cards = cards;
+        this.workspaceId = workspaceId;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
@@ -36,4 +38,7 @@ export default class Column {
         return this.updatedAt;
     }
 
+    public get getWorkspaceId(): string {
+        return this.workspaceId;
+    }
 }
