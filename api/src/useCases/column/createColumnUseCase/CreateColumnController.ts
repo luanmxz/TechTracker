@@ -16,8 +16,6 @@ export class CreateColumnController {
 
         };
 
-        console.log(createColumnDTO);
-
         const column: Column = new Column("", createColumnDTO.title, createColumnDTO.workspaceId, createColumnDTO.userId);
 
         try {

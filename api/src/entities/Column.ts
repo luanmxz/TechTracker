@@ -22,6 +22,10 @@ export default class Column {
         this.active = active;
     }
 
+    static createColumn(title: string) {
+        return new Column("", title);
+    }
+
     public get getId(): string {
         return this.id;
     };

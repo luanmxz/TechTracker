@@ -19,6 +19,10 @@ export default class Card {
         this.active = active;
     };
 
+    static createCard(title: string, description: string = "") {
+        return new Card("", title, description);
+    }
+
     public get getId(): string {
         return this.id;
     }
