@@ -29,8 +29,8 @@ export default class Workspace {
         if (password) this.password = password;
     }
 
-    static createWorkspace(createWorkspaceDTO: CreateWorkspaceDTO): Workspace {
-        return new Workspace("", createWorkspaceDTO.title, createWorkspaceDTO.description, createWorkspaceDTO.userId);
+    static createWorkspace(title: string, userId: string, description?: string): Workspace {
+        return new Workspace("", title, description ?? "", userId);
     }
 
     public get getId(): string {
@@ -65,7 +65,7 @@ export default class Workspace {
         return this.columns;
     }
 
-    public get getActive(): boolean {
+    public get isActive(): boolean {
         return this.active;
     }
 }

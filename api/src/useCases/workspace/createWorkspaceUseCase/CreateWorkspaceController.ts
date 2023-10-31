@@ -8,10 +8,10 @@ export class CreateWorkspaceController {
 
     async handle(httpContextAdapter: IHttpContextAdapter) {
 
-        const newWorkspace: CreateWorkspaceDTO = httpContextAdapter.getRequestBody() as CreateWorkspaceDTO;
+        const createWorkspaceDTO: CreateWorkspaceDTO = httpContextAdapter.getRequestBody() as CreateWorkspaceDTO;
 
         try {
-            await this.createWorkspaceUseCase.execute(newWorkspace);
+            await this.createWorkspaceUseCase.execute(createWorkspaceDTO);
         } catch (error: any) {
             new ErrorResponseHandler(httpContextAdapter, error).handle();
         }

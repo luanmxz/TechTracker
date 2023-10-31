@@ -14,7 +14,7 @@ export class WorkspaceRepositoryImpl implements IWorkspaceRepository {
             const workspacesData = await this.prismaClient.workspace.findMany({
                 where: { userId: userId, active: true },
                 include: {
-                    columns: true,
+                    columns: { include: { cards: true } },
                     User: { select: { id: true } }
                 }
             });
@@ -48,6 +48,7 @@ export class WorkspaceRepositoryImpl implements IWorkspaceRepository {
     }
 
     async create(workspace: Workspace): Promise<void> {
+        console.log(workspace);
         try {
             await this.prismaClient.workspace.create({
                 data: {

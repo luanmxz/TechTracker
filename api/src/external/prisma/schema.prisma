@@ -38,6 +38,7 @@ model Workspace {
   userId String
   columns Column[]
   active Boolean @default(true)
+  locked Boolean @default(false)
 
   @@map("workspaces")
 }
@@ -51,6 +52,7 @@ model Column {
   Workspace Workspace @relation(fields: [workspaceId], references: [id])
   workspaceId String
   cards Card[]
+  active Boolean @default(true)
 
   @@map("columns")
 }
@@ -64,6 +66,7 @@ model Card {
   Column Column @relation(fields: [columnId], references: [id])
   columnId String
   comments Comment[]
+  active Boolean @default(true)
 
   @@map("cards")
 }
@@ -75,6 +78,7 @@ model Comment {
   cardId String
   User User @relation(fields: [userId], references: [id])
   userId String
+  active Boolean @default(true)
 
   @@map("comments")
 }

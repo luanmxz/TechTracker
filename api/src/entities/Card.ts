@@ -6,8 +6,9 @@ export default class Card {
     private updatedAt: Date;
     private columnId: string;
     private userId: string;
+    private active: boolean;
 
-    constructor(id: string = "", title: string = "", description: string = "", columnId: string = "", userId: string = "", createdAt: Date = new Date(), updatedAt: Date = new Date()) {
+    constructor(id: string = "", title: string = "", description: string = "", columnId: string = "", userId: string = "", createdAt: Date = new Date(), updatedAt: Date = new Date(), active: boolean = true) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -15,6 +16,7 @@ export default class Card {
         this.updatedAt = updatedAt;
         this.columnId = columnId;
         this.userId = userId;
+        this.active = active;
     };
 
     public get getId(): string {
@@ -43,5 +45,9 @@ export default class Card {
 
     public get getUserId(): string {
         return this.userId;
+    }
+
+    public get isActive(): boolean {
+        return this.active;
     }
 }

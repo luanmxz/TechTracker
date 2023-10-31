@@ -9,8 +9,10 @@ export class CreateWorkspaceUseCase {
 
         if (createWorkspaceDTO.description === undefined) createWorkspaceDTO.description = '';
 
-        const newWorkspace = Workspace.createWorkspace(createWorkspaceDTO);
+        const { title, description, userId } = createWorkspaceDTO
 
-        await this.workspaceRepository.create(newWorkspace);
+        const workspace = Workspace.createWorkspace(title, userId, description);
+
+        await this.workspaceRepository.create(workspace);
     }
 }
