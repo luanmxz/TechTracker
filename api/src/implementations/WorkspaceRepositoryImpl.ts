@@ -48,7 +48,6 @@ export class WorkspaceRepositoryImpl implements IWorkspaceRepository {
     }
 
     async create(workspace: Workspace): Promise<void> {
-        console.log(workspace);
         try {
             await this.prismaClient.workspace.create({
                 data: {

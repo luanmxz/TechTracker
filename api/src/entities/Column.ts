@@ -5,13 +5,14 @@ export default class Column {
     private id: string;
     private title: string;
     private cards: Card[];
+    private order: number;
     private workspaceId: string;
     private userId: string;
     private createdAt: Date;
     private updatedAt: Date;
     private active: boolean;
 
-    constructor(id: string = "", title: string = "", workspaceId: string = "", userId: string = "", cards: Card[] = [], createdAt: Date = new Date(), updatedAt: Date = new Date(), active: boolean = true) {
+    constructor(id: string = "", title: string = "", workspaceId: string = "", userId: string = "", cards: Card[] = [], createdAt: Date = new Date(), updatedAt: Date = new Date(), active: boolean = true, order: number = 0) {
         this.id = id;
         this.title = title;
         this.workspaceId = workspaceId;
@@ -20,6 +21,7 @@ export default class Column {
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.active = active;
+        this.order = order;
     }
 
     static createColumn(title: string) {
@@ -56,5 +58,9 @@ export default class Column {
 
     public get isActive(): boolean {
         return this.active;
+    }
+
+    public get getOrder(): number {
+        return this.order;
     }
 }
