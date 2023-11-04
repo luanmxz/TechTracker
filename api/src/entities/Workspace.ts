@@ -1,4 +1,4 @@
-import { CreateWorkspaceDTO } from "../useCases/workspace/createWorkspaceUseCase/CreateWorkspaceDTO";
+import Column from "./Column";
 
 export default class Workspace {
 
@@ -10,11 +10,11 @@ export default class Workspace {
     private isLocked: boolean;
     private password?: string;
     private userId: string;
-    private columns: any[];
+    private columns: Column[];
     private active: boolean;
 
     constructor(id: string = "", title: string = "", description: string = "", userId: string, createdAt: Date = new Date(), updatedAt: Date = new Date(),
-        isLocked: boolean = false, columns: any[] = [], active: boolean = false, password?: string) {
+        isLocked: boolean = false, columns: Column[] = [], active: boolean = false, password?: string) {
 
         this.id = id;
         this.title = title;

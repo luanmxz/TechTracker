@@ -1,6 +1,8 @@
 import { PrismaClient } from "@prisma/client";
 import { IWorkspaceRepository } from "../interfaces/repositories/IWorkspaceRepository";
 import Workspace from "../entities/Workspace";
+import Column from "../entities/Column";
+import Card from "../entities/Card";
 
 export class WorkspaceRepositoryImpl implements IWorkspaceRepository {
     constructor(private prismaClient: PrismaClient) { }
@@ -20,6 +22,15 @@ export class WorkspaceRepositoryImpl implements IWorkspaceRepository {
             });
 
             const workspaces: Workspace[] = workspacesData.map(workspaceData => {
+
+                const columns: Column[] = workspaceData.columns.map((columnData) => {
+                    const cards: Card[] = columnData.cards.map((cardData) => {
+                        return new Card(cardData.id, cardData.title, cardData.description ?? "", cardData.columnId, cardData.userId, cardData.createdAt, cardData.updatedAt, cardData.active, cardData.order)
+                    })
+
+                    return new Column(columnData.id, columnData.title, columnData.workspaceId, columnData.userId, cards, columnData.createdAt, columnData.updatedAt, columnData.active, columnData.order)
+                });
+
                 const workspace = new Workspace(
                     workspaceData.id,
                     workspaceData.title,
@@ -28,7 +39,7 @@ export class WorkspaceRepositoryImpl implements IWorkspaceRepository {
                     workspaceData.createdAt,
                     workspaceData.updatedAt,
                     false,//column ISLOCKED, TODO: ADD COLUM TO DB
-                    workspaceData.columns,
+                    columns,
                     workspaceData.active
                 );
                 return workspace;
